@@ -23,13 +23,13 @@ class Login extends React.Component {
     console.log(data)
 	}
 	
-// 	axios.post('MONGODB', this.state.data)
-//       .then(res => {
-// 		Auth.setToken(res.data.token)
-// this.props.history.push('/database')
-//       })
-//       .catch (err => console.log(err.message))
-//   }
+	axios.post('MONGODB', this.state.data)
+      .then(res => {
+		Auth.setToken(res.data.token)
+		this.props.history.push('/database')
+      })
+      .catch (err => console.log(err.message))
+  }
 
   render() {
     return (
