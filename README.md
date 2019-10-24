@@ -1,4 +1,4 @@
 # sei-group-project
-Olly
-Simon
-Chawit 
+Chawit Ongcharit
+Olly Aulakh
+Simon Adr
