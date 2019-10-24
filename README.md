@@ -1,3 +1,4 @@
 # sei-group-project
-Chawit Ongcharit
-Olly Aulakh
+Olly
+Simon
+Chawit 
