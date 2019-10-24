@@ -1,0 +1,14 @@
+{
+  "name": "sei-group-project",
+  "version": "1.0.0",
+  "description": "Group project with Chawit, Olly, and Simon",
+  "main": "index.js",
+  "repository": "git@github.com:ChawitO/sei-group-project.git",
+  "author": "Chawit.O <chawit.ocr@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-plugin-react": "^7.16.0"
+  }
+}
