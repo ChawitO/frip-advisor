@@ -8,7 +8,7 @@ const headers = {
 }
 
 function index(req, res) {
-  Cache.get('https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete', req.query, headers)
+  Cache.get('https://apidojo-booking-v1.p.rapidapi.com/locations/auto-complete', { ...req.query, ...req.params }, headers)
     .then(data => res.status(200).json(data))
     .catch(err => res.status(404).json({ message: 'page not found', ...err }))
 }

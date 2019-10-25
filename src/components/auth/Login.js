@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import Auth from '../../../lib/auth'
-import Skeleton from 'react-loading-skeleton'
+import Auth from '../../lib/auth'
 
 class Login extends React.Component {
   constructor() {
@@ -13,17 +12,18 @@ class Login extends React.Component {
         password: ''
       }
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
-  handleChange(e) {
-    const data = { ...this.state.data, [e.target.name]: e.target.value }
+  onChange({ target: { name, value } }) {
+    const data = { ...this.state.data, [name]: value }
     this.setState({ data })
     console.log(data)
   }
   
-  onSubmit() {
+  onSubmit(e) {
+    e.preventDefault()
     axios.post('/api/register', this.state.data)
       .then(res => {
         Auth.setToken(res.data.token)
@@ -34,58 +34,38 @@ class Login extends React.Component {
 
   render() {
     return (
-      <>
-        {/*  BULMA option */}
-        <section className="section">
-          <div className="container">
-            <form onSubmit={this.handleSubmit}>
-              <h2 className="title">Login</h2>
-              <div className="field">
-                <label className="label">Email</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    name="email"
-                    placeholder="Email"
-                    onChange={this.handleChange}
-                  />
-                </div>
+    // BULMA option
+      <section className="section">
+        <div className="container">
+          <form onSubmit={this.onSubmit}>
+            <h2 className="title">Login</h2>
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control">
+                <input
+                  className="input"
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.onChange}
+                />
               </div>
-              <div className="field">
-                <label className="label">Password</label>
-                <div className="control">
-                  <input
-                    className="input"
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={this.handleChange}
-                  />
-                </div>
+            </div>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
+                <input
+                  className="input"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.onChange}
+                />
               </div>
-              <button type="submit" className="button is-warning">Login</button>
-            </form>
-          </div>
-        </section>
-        
-      {/* SKELETON option design NO handle submits */}
-      <form id="loginForm" action="/whatever" method="post">
-        <div className="row">
-          <div className="seven columns">
-            <label htmlFor="email">Email Address</label>
-            <input type="text" name="email" id="emailField" placeholder="name@example.com" required />
-
-            <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="passwordField" required />
-
-            <button type="submit" className="button-primary">Sign In</button>
-          </div>
-          <div className="five columns">
-            <p>Extra</p>
-          </div>
+            </div>
+            <button type="submit" className="button is-primary">Login</button>
+          </form>
         </div>
-      </form>
-		</>
+      </section>		
     )
   }
 }

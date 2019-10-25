@@ -26,10 +26,10 @@ class Register extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
 
-  //   console.log('submitted', this.state.data)
-  //   axios.post('https://XXXXX/register', this.state.data)
-  //     .then(() => this.props.history.push('/'))
-  //     .catch(err => console.log(err))
+    console.log('submitted', this.state.data)
+    axios.post('/api/register', this.state.data)
+      .then(() => this.props.history.push('/'))
+      .catch(err => console.log(err))
   }
 
   render() {
@@ -85,37 +85,11 @@ class Register extends React.Component {
                 />
               </div>
             </div>
-            <button type="submit" className="button is-info is-fullwidth">Register</button>
+            <button type="submit" className="button is-fullwidth is-primary">Register</button>
           </form>
         </div>
       </section>
-			
-    // SKELETON form design no handlechange or submit
-    // <form id="loginForm" action="/whatever" method="post">
-    //    <div class="row">
-
-    //      <div class="eleven columns">
-    //        <label for="Username">Username</label>
-    //     <input type="text" name="Username" id="Username" placeholder="username" required />
-
-    // 			<div class="eleven columns">
-    //       <label for="email">Email Address</label>
-    //      <input type="text" name="email" id="emailField" placeholder="name@example.com" required />
-
-    // 				<div class="eleven columns">
-    // 					<label for="Password">Password</label>
-    // 					<input type="text" name="Password" id="Password" placeholder="Password" required />
-					
-    // 			<div class="eleven columns">
-    // 				<label for="Password Confirmation">Password Confirmation</label>
-    // 					<input type="text" name="Password" id="Password" placeholder="Password Confirmation" required />
-    //      <button type="submit" class="button-primary">Register</button>
-    //    </div>
-    //  </div>
-    //  </form>
-
     )
   }
 }
-
 export default Register 
