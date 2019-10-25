@@ -15,7 +15,7 @@ mongoose.connect(dbURI,
 
 app.use(bodyParser.json())
 
-app.use(logger)
+app.use('/api', logger)
 
 app.use('/api', router)
 
