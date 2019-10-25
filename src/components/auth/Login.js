@@ -16,19 +16,18 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(e) {
-    const data = { ...this.state.data, [e.target.name]: e.target.value }
+  onChange({ target: { name, value } }) {
+    const data = { ...this.state.data, [name]: value }
     this.setState({ data })
     console.log(data)
   }
-
-  handleSubmit(e) {
+  
+  onSubmit(e) {
     e.preventDefault()
-	
-    axios.post('/fripadvisor/login', this.state.data)
+    axios.post('/api/register', this.state.data)
       .then(res => {
         Auth.setToken(res.data.token)
-        this.props.history.push('/database')
+        this.props.history.push('/')
       })
       .catch(err => console.log(err.message))
   }
@@ -38,7 +37,7 @@ class Login extends React.Component {
     // BULMA option
       <section className="section">
         <div className="container">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.onSubmit}>
             <h2 className="title">Login</h2>
             <div className="field">
               <label className="label">Email</label>
@@ -47,7 +46,7 @@ class Login extends React.Component {
                   className="input"
                   name="email"
                   placeholder="Email"
-                  onChange={this.handleChange}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -59,7 +58,7 @@ class Login extends React.Component {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  onChange={this.handleChange}
+                  onChange={this.onChange}
                 />
               </div>
             </div>

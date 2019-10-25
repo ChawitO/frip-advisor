@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -14,7 +15,7 @@ mongoose.connect(dbURI,
 
 app.use(bodyParser.json())
 
-app.use(logger)
+app.use('/api', logger)
 
 app.use('/api', router)
 

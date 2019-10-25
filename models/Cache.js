@@ -1,12 +1,8 @@
 const mongoose = require('mongoose')
 
 const cacheSchema = new mongoose.Schema({
+  url: { type: String, required: true, unique: true },
   data: { type: String, required: true }
 }, { timestamps: true })
 
-cacheSchema.pre('validate', function(next) {
-  this.data = JSON.stringify(this.data)
-  next()
-})
-
-module.exports = mongoose.model('Animal', cacheSchema)
+module.exports = mongoose.model('Cache', cacheSchema)
