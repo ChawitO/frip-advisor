@@ -7,6 +7,10 @@ const bookings = require('../controllers/booking')
 
 router.route('/trips')
   .get(trips.index)
+  // .post(secureRouter, trips.create)
+
+// router.route('/trips/:id') // Route for members
+//   .delete(secureRouter, trips.delete)
 
 router.route('/register')
   .post(users.register)
