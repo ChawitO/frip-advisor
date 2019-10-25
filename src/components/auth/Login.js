@@ -12,8 +12,8 @@ class Login extends React.Component {
         password: ''
       }
     }
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   onChange({ target: { name, value } }) {
