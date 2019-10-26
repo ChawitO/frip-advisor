@@ -9,8 +9,13 @@ const headers = {
 
 function flightIndex(req, res) {
   Cache.get('https://apidojo-kayak-v1.p.rapidapi.com/flights/create-session', { ...req.query, ...req.params }, headers)
+    .then(data => (data.morepending) ? flightPoll({ ...req.query, ...req.params, ...data }) : data)
     .then(data => res.status(200).json(data))
     .catch(err => res.status(404).json({ message: 'page not found', ...err }))
+}
+
+function flightPoll({ searchid, currency, bags }) {
+  return Cache.get('https://apidojo-kayak-v1.p.rapidapi.com/flights/poll', { searchid, currency, bags }, headers)
 }
 
 module.exports = { flightIndex }

@@ -8,6 +8,7 @@ import Navbar from './components/common/Navbar'
 import Footer from './components/common/Footer'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import Flights from './components/Flights'
 
 const App = () => (
   <BrowserRouter>
@@ -17,6 +18,7 @@ const App = () => (
         <Route exact path="/" component={Home} />
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path='/flights' component={Flights} />
       </Switch>
       <Footer />
     </main>
