@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const users = require('../controllers/auth')
 const trips = require('../controllers/trips')
+const kajaks = require('../controllers/kajak')
 const bookings = require('../controllers/booking')
 // const secureRouter = require('../lib/secureRouter')
 
@@ -17,6 +18,9 @@ router.route('/register')
 
 router.route('/login')
   .post(users.login)
+
+router.route('/flights')
+  .get(kajaks.flightIndex)
 
 router.route('/cities')
   .get(bookings.index)
