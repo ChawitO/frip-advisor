@@ -5,6 +5,7 @@ const Trip = require('../models/Trip')
 function index(req, res) {
   Trip
     .find()
+    .populate('user')
     .then(trips => res.status(200).json(trips))
     .catch(() => res.status(404).json({ message: 'Not Found' }))
 }
