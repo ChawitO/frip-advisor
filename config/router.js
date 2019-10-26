@@ -2,6 +2,7 @@ const router = require('express').Router()
 
 const users = require('../controllers/auth')
 const trips = require('../controllers/trips')
+const frips = require('../controllers/frips')
 const kajaks = require('../controllers/kajak')
 const bookings = require('../controllers/booking')
 // const secureRouter = require('../lib/secureRouter')
@@ -18,6 +19,10 @@ router.route('/register')
 
 router.route('/login')
   .post(users.login)
+
+router.route('/frips')
+  .get(frips.index)
+  .post(frips.create)
 
 router.route('/flights')
   .get(kajaks.flightIndex)
