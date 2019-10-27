@@ -14,16 +14,16 @@ class Register extends React.Component {
       }
     }
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
-  handleChange(e) {
+  onChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data })
   }
 
-  handleSubmit(e) {
+  onSubmit(e) {
     e.preventDefault()
 
     console.log('submitted', this.state.data)
@@ -37,7 +37,7 @@ class Register extends React.Component {
     // BULMA form
       <section className="section">
         <div className="container">
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.onSubmit}>
             <h2 className="title">Register</h2>
             <div className="field">
               <label className="label">Username</label>
@@ -46,7 +46,7 @@ class Register extends React.Component {
                   className="input"
                   name="username"
                   placeholder="Username"
-                  onChange={this.handleChange}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -57,7 +57,7 @@ class Register extends React.Component {
                   className="input"
                   name="email"
                   placeholder="Email"
-                  onChange={this.handleChange}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -69,7 +69,7 @@ class Register extends React.Component {
                   name="password"
                   type="password"
                   placeholder="Password"
-                  onChange={this.handleChange}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -81,7 +81,7 @@ class Register extends React.Component {
                   name="passwordConfirmation"
                   type="password"
                   placeholder="Password Confirmation"
-                  onChange={this.handleChange}
+                  onChange={this.onChange}
                 />
               </div>
             </div>

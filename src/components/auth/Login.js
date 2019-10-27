@@ -24,12 +24,12 @@ class Login extends React.Component {
   
   onSubmit(e) {
     e.preventDefault()
-    axios.post('/api/register', this.state.data)
+    axios.post('/api/login', this.state.data)
       .then(res => {
         Auth.setToken(res.data.token)
         this.props.history.push('/')
       })
-      .catch(err => console.log(err.message))
+      .catch(err => console.log(err))
   }
 
   render() {
