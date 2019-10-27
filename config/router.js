@@ -5,7 +5,7 @@ const trips = require('../controllers/trips')
 const frips = require('../controllers/frips')
 const kajaks = require('../controllers/kajak')
 const bookings = require('../controllers/booking')
-// const secureRouter = require('../lib/secureRouter')
+const secureRoute = require('../lib/secureRoute')
 
 router.route('/trips')
   .get(trips.index)
@@ -22,7 +22,7 @@ router.route('/login')
 
 router.route('/frips')
   .get(frips.index)
-  .post(frips.create)
+  .post(secureRoute, frips.create)
 
 router.route('/flights')
   .get(kajaks.flightIndex)

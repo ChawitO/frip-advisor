@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import Auth from '../../lib/auth'
 
 export default class FripsNew extends React.Component {
   constructor() {
@@ -28,8 +29,7 @@ export default class FripsNew extends React.Component {
 
   onSubmit(e) {
     e.preventDefault()
-    console.log('making new frip', this.state.data)
-    axios.post('/api/frips', this.state.data)
+    axios.post('/api/frips', this.state.data, { headers: { Authorization: `Bearer ${Auth.getToken()}` } })
       .then(res => console.log(res))
       .catch(err => console.log(err))
   }
@@ -44,7 +44,6 @@ export default class FripsNew extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const { name, originCity, searchCities, departureDate, returnDate } = this.state.data
     return (
       <section className='section'>
