@@ -8,7 +8,7 @@ const fripSchema = new mongoose.Schema({
   destinationCityId: { type: String, required: true },
   departureDate: { type: Date, required: true },
   returnDate: { type: Date, required: true },
-  creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: false },
+  creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   travellers: { type: [mongoose.Schema.ObjectId], ref: 'User', required: false }
 }, { timestamps: true })
 

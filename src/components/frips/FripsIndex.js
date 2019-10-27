@@ -11,7 +11,7 @@ export default class FripsIndex extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/trips')
+    axios.get('/api/frips')
       .then(res => this.setState({ frips: res.data }))
       .catch(err => console.log(err))
   }
@@ -25,8 +25,10 @@ export default class FripsIndex extends React.Component {
         <Link to='/frips/new'>New Frip</Link>
         {frips && frips.map(frip => (
           <div key={frip._id} className='content'>
-            <h4>{frip.hotel} - {frip.city}</h4>
-            <p>{frip.departureDate} - {frip.arrivalDate}</p>
+            <h3>{frip.name}</h3>
+            <h4>{frip.originCity} to {frip.destinationCity}</h4>
+            <p>{frip.departureDate} - {frip.returnDate}</p>
+            <p>by {frip.creator.username}</p>
           </div>
         ))}
       </section>
