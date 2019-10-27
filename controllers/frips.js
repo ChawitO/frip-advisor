@@ -8,6 +8,14 @@ function index(req, res) {
     .catch(() => res.status(404).json({ message: 'Not Found' }))
 }
 
+function show(req, res) {
+  Frip
+    .findById(req.params.id)
+    .populate('creator')
+    .then(frip => res.status(200).json(frip))
+    .catch(() => res.status(404).json({ message: 'Not Found' }))
+}
+
 function create(req, res) {
   req.body.creator = req.currentUser
   Frip
@@ -16,4 +24,4 @@ function create(req, res) {
     .catch(err => res.status(422).json(err))
 }
 
-module.exports = { index, create }
+module.exports = { index, show, create }

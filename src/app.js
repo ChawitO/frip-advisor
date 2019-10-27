@@ -11,10 +11,11 @@ import Login from './components/auth/Login'
 import Flights from './components/Flights'
 import Frips from './components/frips/FripsIndex'
 import FripsNew from './components/frips/FripsNew'
+import FripsShow from './components/frips/FripsShow'
 
 const App = () => (
   <BrowserRouter>
-    <main>
+    <>
       <Navbar />
       <Switch>
         <Route exact path="/" component={Home} />
@@ -22,10 +23,11 @@ const App = () => (
         <Route path="/login" component={Login} />
         <Route path='/flights' component={Flights} />
         <Route path='/frips/new' component={FripsNew} />
+        <Route path='/frips/:id' component={FripsShow} />
         <Route path='/frips' component={Frips} />
       </Switch>
       <Footer />
-    </main>
+    </>
   </BrowserRouter>
 )
 

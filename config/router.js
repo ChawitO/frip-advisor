@@ -24,6 +24,9 @@ router.route('/frips')
   .get(frips.index)
   .post(secureRoute, frips.create)
 
+router.route('/frips/:id')
+  .get(frips.show)
+
 router.route('/flights')
   .get(kajaks.flightIndex)
 
