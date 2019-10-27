@@ -12,7 +12,8 @@ class Footer extends React.Component {
       <footer className="footer">
         <div className="content has-text-centered">
           <p>
-						asdfghj
+            <strong>FripAdvisor</strong> by <a href="https://fripadvisor.com">Bad Hair Day Team</a>. The website content
+      is ripped off.
           </p>
         </div>
       </footer>

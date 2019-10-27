@@ -34,8 +34,9 @@ export default class Home extends React.Component {
     console.log(this.state)
     const { searchCities, cities, hotels } = this.state
     return (
-      <section>
+      <section className="section">
         <h1>Frip Advisor Home Page</h1>
+        <img src="./assets/images/Skyline.jpg"/>
         <form onSubmit={(e) => this.onSearch('searchCities', '/cities', e)}>
           <input name='searchCities' onChange={this.onChange} value={searchCities} placeholder='search here for destination city'/>
           <button type='submit'>Search</button>
