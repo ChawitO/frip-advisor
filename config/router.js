@@ -27,6 +27,10 @@ router.route('/frips')
 router.route('/frips/:id')
   .get(frips.show)
 
+router.route('/frips/:id/hotels')
+  .get(frips.hotelSearch)
+  .post(frips.hotelAssign)
+
 router.route('/flights')
   .get(kajaks.flightIndex)
 
