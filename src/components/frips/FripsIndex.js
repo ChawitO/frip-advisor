@@ -11,7 +11,8 @@ export default class FripsIndex extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/frips')
+    axios
+      .get('/api/frips')
       .then(res => this.setState({ frips: res.data }))
       .catch(err => console.log(err))
   }
@@ -20,19 +21,27 @@ export default class FripsIndex extends React.Component {
     console.log(this.state)
     const { frips } = this.state
     return (
-      <section>
-        <h1>Frip Index page</h1>
+      <section className='section'>
+        <div className='container'>
+          <h1>Frip Index page</h1>
+        </div>
         <Link to='/frips/new'>New Frip</Link>
-        {frips && frips.map(frip => (
-          <div key={frip._id} className='content'>
-            <h3><Link to={`/frips/${frip._id}`}>{frip.name}</Link></h3>
-            <h4>{frip.originCity} to {frip.destinationCity}</h4>
-            <p>{frip.departureDate} - {frip.returnDate}</p>
-            <p>by {frip.creator.username}</p>
-          </div>
-        ))}
+        {frips &&
+          frips.map(frip => (
+            <div key={frip._id} className='content'>
+              <h3>
+                <Link to={`/frips/${frip._id}`}>{frip.name}</Link>
+              </h3>
+              <h4>
+                {frip.originCity} to {frip.destinationCity}
+              </h4>
+              <p>
+                {frip.departureDate} - {frip.returnDate}
+              </p>
+              <p>by {frip.creator.username}</p>
+            </div>
+          ))}
       </section>
-
     )
   }
 }
