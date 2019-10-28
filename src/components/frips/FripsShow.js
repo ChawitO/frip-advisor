@@ -48,6 +48,11 @@ export default class FripsShow extends React.Component {
       .catch(err => console.log(err))
   }
 
+  searchFlights() {
+    console.log('ehh')
+    
+  }
+
   render() {
     console.log(this.state)
     const { frip, hotels } = this.state
@@ -61,6 +66,7 @@ export default class FripsShow extends React.Component {
             <p>{frip.departureDate} - {frip.returnDate}</p>
             <p>by {frip.creator.username}</p>
             <button onClick={() => this.getHotels()}>Search Hotels</button>
+            <button onClick={() => this.searchFlights()}>Search Flights</button>
           </div>
         }
         {frip && frip.hotels.map(hotel => (
