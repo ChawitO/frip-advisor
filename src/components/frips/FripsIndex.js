@@ -21,15 +21,8 @@ export default class FripsIndex extends React.Component {
     console.log(this.state)
     const { frips } = this.state
     return (
-<<<<<<< HEAD
-      <section className='section'>
-        <div className='container'>
-          <h1>Frip Index page</h1>
-        </div>
-=======
       <section className="section">
         <h1>Create your Frips</h1>
->>>>>>> development
         <Link to='/frips/new'>New Frip</Link>
         {frips &&
           frips.map(frip => (
