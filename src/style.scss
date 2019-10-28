@@ -2,9 +2,16 @@
   box-sizing: border-box;
 }
 
-body {
-	
+section {
+	height: 90vh;
 }
+
+.section > img {
+	height: 30vh;
+	width : 100vw;
+}
+
+// BULMA footer override
 // $footer-background-color: $primary;
 // $footer-color: false !default;
 // $footer-padding: 3rem 1.5rem 6rem !default;
