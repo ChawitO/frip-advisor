@@ -21,19 +21,16 @@ export default class FripsIndex extends React.Component {
     console.log(this.state)
     const { frips } = this.state
     return (
-<<<<<<< HEAD
-      <section className='section'>
-        <div className='container'>
-          <h1>Frip Index page</h1>
+      <section className="section-index">
+        <div className="container">
+          <h1 className="subtitle is-3 has-text-white has-text-centered">My Personal Frips</h1>
+       
+          <Link to='/frips/new' className="subtitle is-4 has-text-white has-text-centered">Start creating your new Frip</Link>
         </div>
-=======
-      <section className="section">
-        <h1>Create your Frips</h1>
->>>>>>> development
-        <Link to='/frips/new'>New Frip</Link>
-        {frips &&
+        <div className="personal-frip">
+          {frips &&
           frips.map(frip => (
-            <div key={frip._id} className='content'>
+            <div key={frip._id} className='content-index'>
               <h3>
                 <Link to={`/frips/${frip._id}`}>{frip.name}</Link>
               </h3>
@@ -45,7 +42,9 @@ export default class FripsIndex extends React.Component {
               </p>
               <p>by {frip.creator.username}</p>
             </div>
+            
           ))}
+        </div>
       </section>
     )
   }
