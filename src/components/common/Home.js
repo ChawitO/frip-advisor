@@ -32,28 +32,11 @@ export default class Home extends React.Component {
 
   render() {
     console.log(this.state)
-    const { searchCities, cities, hotels } = this.state
+    
     return (
       <section className="section">
         <h1>Frip Advisor Home Page</h1>
         <img src="./assets/images/Skyline.jpg"/>
-        <form onSubmit={(e) => this.onSearch('searchCities', '/cities', e)}>
-          <input name='searchCities' onChange={this.onChange} value={searchCities} placeholder='search here for destination city'/>
-          <button type='submit'>Search</button>
-        </form>
-        {cities && cities.map(city => (
-          <div key={city.dest_id} onClick={() => this.onSearch('searchHotels', `/cities/${city.dest_id}/hotels`)}>
-            <img src={city.image_url} alt={`image of ${city.name}`}/>
-            <h4>{city.name}</h4>
-          </div>
-        ))}
-        {hotels && hotels.result.map(hotel => (
-          <div key={hotel.hotel_id}>
-            <img src={hotel.main_photo_url} alt={`image of ${hotel.hotel_name} hotel`}/>
-            <h4>{hotel.hotel_name}</h4>
-            <h6>{hotel.address}</h6>
-          </div>
-        ))}
       </section>
     )
   }
