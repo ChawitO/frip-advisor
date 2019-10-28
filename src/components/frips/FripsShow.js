@@ -53,6 +53,11 @@ export default class FripsShow extends React.Component {
       .catch(err => console.log(err))
   }
 
+  searchFlights() {
+    console.log('ehh')
+    
+  }
+
   render() {
     console.log(this.state)
     const { frip, hotels } = this.state

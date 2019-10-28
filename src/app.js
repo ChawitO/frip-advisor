@@ -5,7 +5,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import 'bulma'
 import './style.scss'
 
-
 import Home from './components/common/Home'
 import Navbar from './components/common/Navbar'
 import Footer from './components/common/Footer'
