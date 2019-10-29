@@ -5,20 +5,17 @@ const getStopText = (stopCount) => (
   (stopCount > 1) ? `${stopCount} stops` : (stopCount === 1) ? `${stopCount} stop` : 'direct'
 )
 
-const getDayDiff = (segsets, segments) => (
-  moment(segsets[segments[segments.length - 1]].arriveTimeAirport.split(' ')[0], 'yyyy/mm/dd HH:mm')
-    .diff(moment(segsets[segments[0]].leaveTimeAirport.split(' ')[0], 'yyyy/mm/dd HH:mm'), 'days')
-)
-
 const FlightSummaryInfo = ({ segsets, segments, duration, i, host, url, airlines, flight }) => {
   const airlineCodes = [...new Set(segments.map(seg => segsets[seg].airlineCode))]
   const imgClass = airlineCodes.length > 1 ? 'multi' : ''
   const departTime = segsets[segments[0]].leaveTimeAirport.split(' ')[1]
   const arriveTime = segsets[segments[segments.length - 1]].arriveTimeAirport.split(' ')[1]
-  const dayDiff = getDayDiff(segsets, segments)
   const stopText = getStopText(segments.length - 1)
   const stopoverAirports = segments.map(seg => segsets[seg].destinationCode).slice(0, -1).join(', ')
   const durationText = `${Math.floor(duration / 60)}h ${duration % 60}m`
+  const mDate1 = moment(segsets[segments[segments.length - 1]].arriveTimeAirport, 'YYYY/MM/DD')
+  const mDate2 = moment(segsets[segments[0]].leaveTimeAirport, 'YYYY/MM/DD')
+  const daysDiff = mDate1.diff(mDate2, 'days')
 
   return (
     <div className='flight-summary'>
@@ -28,7 +25,7 @@ const FlightSummaryInfo = ({ segsets, segments, duration, i, host, url, airlines
         ))}
       </figure>
       <div>
-        <div>{departTime} - {arriveTime}{!!dayDiff && <sup>+{dayDiff}</sup>}</div>
+        <div>{departTime} - {arriveTime}{!!daysDiff && <sup>+{daysDiff}</sup>}</div>
         <div>{airlineCodes.length > 1 ? 'Multiple Airlines' : airlines[airlineCodes[0]]}</div>
       </div>
       <div>
