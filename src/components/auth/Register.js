@@ -94,7 +94,6 @@ class Register extends React.Component {
         <div className="register_top_right">
           <img src="./assets/images/owl_3.png" />
         </div>
-
       </section>
     )
   }

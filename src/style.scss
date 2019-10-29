@@ -81,6 +81,55 @@ padding-top: 20%;
 
 
 
+// .section-index {
+//   // background-image: url('https://www.intrepidtravel.com/adventures/wp-content/uploads/2018/10/Intrepid-Travel-USA_Virginia_Appalachian_Mountains_Shenandoah_National_Park_skyline_drive_071.jpg');
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   width: 100vw;
+//   height: 100vh;
+// }
+
+// INDEX PAGE
+.personal-frip {
+  display: flex;
+  height: 80vh;
+  max-width: 100vw;
+  flex-wrap: wrap;
+}
+
+.content-index {
+  flex: 1;
+  border: 1px solid black;
+  height: 20vh;
+  width: 20vw;
+  padding: 10px 20px;
+  text-align: center;
+  margin: 20px; 
+  min-width: 40vw;
+}
+
+// SHOW PAGE
+.box-showpage {
+  border: 2px solid black;
+  margin: 100px 100px;
+  padding: 50px 50px;
+  width: 1100px;
+  display: flex;
+}
+
+#root > section > div > div.content {
+  border: 1px solid black;
+}
+
+button {
+  border-radius: 10%;
+ }
+
+#root > section > div > div:nth-child(2) {
+  
+  width: 30%;
+}
+
 // BULMA footer override
 // $footer-background-color: $primary;
 // $footer-color: false !default;
