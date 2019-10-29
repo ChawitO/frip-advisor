@@ -2,14 +2,84 @@
   box-sizing: border-box;
 }
 
-section {
-	height: 90vh;
-}
-
-.section > img {
+.section_home > img {
 	height: 30vh;
 	width : 100vw;
 }
+
+.section_login {
+	display: flex;
+	justify-content: flex-start;
+}
+
+section > div.login_top_left {
+background-color: whitesmoke ;
+border-radius: 10px;
+padding: 30px;
+display: flex;
+width: 50vw;
+}
+
+
+section > div.login_top_right {
+width: 50vw;
+text-align: center;
+background-color: whitesmoke ;
+border-radius: 10px;
+padding: 30px;
+}
+
+section.section_login > div.login_top_right > img {
+height: 30vh;
+padding-top: 10%;
+}
+
+section > div.login_bottom
+{
+align-content: center;
+background-color: whitesmoke ;
+}
+
+section > div.login_bottom > img
+{
+opacity: 50%;
+padding: 30px;
+height: 50vh;
+width: 100vw;
+// border: 3px solid turquoise;
+border-radius: 10px;
+}
+
+.section_register {
+	display: flex;
+	justify-content: flex-start;
+}
+
+section > div.register_top_left {
+background-color: whitesmoke ;
+border-radius: 10px;
+padding: 30px;
+// display: flex;
+width: 70vw;
+}
+
+section > div.register_top_right {
+background-color: whitesmoke ;
+border-radius: 10px;
+width: 30vw;
+align-items: center;
+}
+
+section.section_register > div.register_top_right > img {
+height: 60vh;
+padding-top: 20%;
+}
+
+
+
+
+
+
 
 // BULMA footer override
 // $footer-background-color: $primary;
