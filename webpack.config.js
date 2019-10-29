@@ -14,18 +14,7 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      {
-        test: /\.css$/,
-        include: path.resolve(__dirname, './assets/css/'),
-        loader: "style-loader!css-loader!
-      },
-
-      {
-        test: /\.scss$/,
-        include: path.resolve(__dirname, './assets/css/'),
-        loader: "style-loader!css-loader!resolve-url-loader!sass-loader"
-      },
-      {test: /\.css$/, loader: ['style-loader', 'css-loader', 'resolve- url - loader"] }, 
+      { test: /\.css$/, loader: ['style-loader', 'css-loader'] },
       { test: /\.s(a|c)ss$/, loader: ['style-loader', 'css-loader', 'sass-loader'] },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
       { test: /\.(woff|woff2)$/, loader: 'url-loader?prefix=font/&limit=5000' },
@@ -62,4 +51,4 @@ module.exports = {
     ]),
     new webpack.EnvironmentPlugin(['RAPID_API_KEY'])
   ]
-  }
+}
