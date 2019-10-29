@@ -4,44 +4,113 @@
   box-sizing: border-box;
 }
 
-.section > img {
+.section_home > img {
 	height: 30vh;
 	width : 100vw;
 }
 
-.section-index {
-  background-image: url('https://www.intrepidtravel.com/adventures/wp-content/uploads/2018/10/Intrepid-Travel-USA_Virginia_Appalachian_Mountains_Shenandoah_National_Park_skyline_drive_071.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
+.section_login {
+	display: flex;
+	justify-content: flex-start;
 }
 
-.create-frip {
-  color: white;
-  padding: 40px 100px;
+section > div.login_top_left {
+background-color: whitesmoke ;
+border-radius: 10px;
+padding: 30px;
+display: flex;
+width: 50vw;
+}
+
+
+section > div.login_top_right {
+width: 50vw;
+text-align: center;
+background-color: whitesmoke ;
+border-radius: 10px;
+padding: 30px;
+}
+
+section.section_login > div.login_top_right > img {
+height: 30vh;
+padding-top: 10%;
+}
+
+section > div.login_bottom
+{
+align-content: center;
+background-color: whitesmoke ;
+}
+
+section > div.login_bottom > img
+{
+opacity: 50%;
+padding: 30px;
+height: 50vh;
+width: 100vw;
+// border: 3px solid turquoise;
+border-radius: 10px;
+}
+
+.section_register {
+	display: flex;
+	justify-content: flex-start;
+}
+
+section > div.register_top_left {
+background-color: whitesmoke ;
+border-radius: 10px;
+padding: 30px;
+// display: flex;
+width: 70vw;
+}
+
+section > div.register_top_right {
+background-color: whitesmoke ;
+border-radius: 10px;
+width: 30vw;
+align-items: center;
+}
+
+section.section_register > div.register_top_right > img {
+height: 60vh;
+padding-top: 20%;
+}
+
+
+
+
+
+
+
+// .section-index {
+//   // background-image: url('https://www.intrepidtravel.com/adventures/wp-content/uploads/2018/10/Intrepid-Travel-USA_Virginia_Appalachian_Mountains_Shenandoah_National_Park_skyline_drive_071.jpg');
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   width: 100vw;
+//   height: 100vh;
+// }
+
+// INDEX PAGE
+.personal-frip {
+  display: flex;
+  height: 80vh;
+  max-width: 100vw;
+  flex-wrap: wrap;
 }
 
 .content-index {
-  color: white;
-  border: 1px solid white;
-  width: 500px;
-  height: 150px;
- 
-}
-
-#root > section > div.personal-frip > div > h3 > a {
-  font-size: 40px;
+  flex: 1;
+  border: 1px solid black;
+  height: 20vh;
+  width: 20vw;
+  padding: 10px 20px;
   text-align: center;
-  color: white;
-  text-decoration: underline;
-  padding: 0 200px;
-}
-#root > section > div.personal-frip > div > h4 {
-  padding: 0 170px;
+  margin: 20px; 
+  min-width: 40vw;
 }
 
-
+// SHOW PAGE
 .box-showpage {
   border: 2px solid black;
   margin: 100px 100px;
@@ -51,17 +120,17 @@
 }
 
 #root > section > div > div.content {
-  border: 1px solid grey;
+  border: 1px solid black;
 }
 
 button {
   border-radius: 10%;
  }
 
-// #root > section > div > div:nth-child(2) {
-//   background-color: red;
-//   width: 30%;
-// }
+#root > section > div > div:nth-child(2) {
+  
+  width: 30%;
+}
 
 // BULMA footer override
 // $footer-background-color: $primary;

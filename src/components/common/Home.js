@@ -34,7 +34,7 @@ export default class Home extends React.Component {
     console.log(this.state)
     
     return (
-      <section className="section">
+      <section className="section_home">
         <h1>Frip Advisor Home Page</h1>
         <img src="./assets/images/Skyline.jpg"/>
       </section>
