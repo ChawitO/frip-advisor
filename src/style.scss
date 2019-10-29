@@ -1,8 +1,8 @@
+@import './components/flights/flights';
+
 * {
   box-sizing: border-box;
 }
-
-
 
 .section > img {
 	height: 30vh;
@@ -58,10 +58,10 @@ button {
   border-radius: 10%;
  }
 
-#root > section > div > div:nth-child(2) {
-  background-color: red;
-  width: 30%;
-}
+// #root > section > div > div:nth-child(2) {
+//   background-color: red;
+//   width: 30%;
+// }
 
 // BULMA footer override
 // $footer-background-color: $primary;

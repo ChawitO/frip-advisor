@@ -73,14 +73,22 @@ export default class FlightsSearch extends React.Component {
         <section className='section'>
           <h1>Flight Search Page</h1>
           <form onSubmit={this.onSearchFlights}>
-            <div>
-              <AsyncSelect placeholder='From' cacheOptions defaultOptions loadOptions={searchAirports} onChange={({ value }) => this.setState({ fromAirports: value })}/>
+            <div className='field is-grouped'>
+              <div className='control is-expanded'>
+                <AsyncSelect placeholder='From' cacheOptions defaultOptions loadOptions={searchAirports} onChange={({ value }) => this.setState({ fromAirports: value })}/>
+              </div>
+              <div className='control is-expanded'>
+                <AsyncSelect placeholder='To' loadOptions={searchAirports} onChange={({ value }) => this.setState({ toAirports: value })} />
+              </div>
             </div>
-            <div>
-              <AsyncSelect placeholder='To' loadOptions={searchAirports} onChange={({ value }) => this.setState({ toAirports: value })} />
+            <div className='field is-grouped'>
+              <div className='control is-expanded'>
+                <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={this.state.departureDate} />
+              </div>
+              <div className='control is-expanded'>
+                <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' />
+              </div>
             </div>
-            <input type='date' onChange={(e) => this.onChange(e)} name='departureDate' value={this.state.departureDate}/>
-            <input type='date' onChange={(e) => this.onChange(e)} name='returnDate' />
             <button type='submit' className='button is-info'>Submit</button>
           </form>
         </section>
