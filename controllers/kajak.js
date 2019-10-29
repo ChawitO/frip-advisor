@@ -18,4 +18,10 @@ function flightPoll({ searchid, currency, bags }) {
   return Cache.get('https://apidojo-kayak-v1.p.rapidapi.com/flights/poll', { searchid, currency, bags }, headers)
 }
 
-module.exports = { flightIndex }
+function locationSearch(req, res) {
+  Cache.get('https://apidojo-kayak-v1.p.rapidapi.com/locations/search', { ...req.query, ...req.params }, headers)
+    .then(data => res.status(200).json(data))
+    .catch(err => res.status(404).json({ message: 'page not found', ...err }))
+}
+
+module.exports = { flightIndex, locationSearch }
