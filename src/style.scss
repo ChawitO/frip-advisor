@@ -2,38 +2,42 @@
   box-sizing: border-box;
 }
 
-
-
 .section > img {
 	height: 30vh;
 	width : 100vw;
 }
 
-.section-index {
-  background-image: url('https://www.intrepidtravel.com/adventures/wp-content/uploads/2018/10/Intrepid-Travel-USA_Virginia_Appalachian_Mountains_Shenandoah_National_Park_skyline_drive_071.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100vw;
-  height: 100vh;
-}
+// .section-index {
+//   // background-image: url('https://www.intrepidtravel.com/adventures/wp-content/uploads/2018/10/Intrepid-Travel-USA_Virginia_Appalachian_Mountains_Shenandoah_National_Park_skyline_drive_071.jpg');
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   width: 100vw;
+//   height: 100vh;
+// }
 
 .create-frip {
-  color: white;
   padding: 40px 100px;
 }
 
+.personal-frip {
+  height: 100%;
+}
+
+#root > section > div.container > a {
+  margin: 0 20px;
+}
 .content-index {
-  color: white;
-  border: 1px solid white;
+  border: 1px solid black;
   width: 500px;
   height: 150px;
- 
+  position: relative;
+  margin: 0 20px;
 }
 
 #root > section > div.personal-frip > div > h3 > a {
   font-size: 40px;
   text-align: center;
-  color: white;
+ 
   text-decoration: underline;
   padding: 0 200px;
 }
@@ -51,7 +55,7 @@
 }
 
 #root > section > div > div.content {
-  border: 1px solid grey;
+  border: 1px solid black;
 }
 
 button {
@@ -59,7 +63,7 @@ button {
  }
 
 #root > section > div > div:nth-child(2) {
-  background-color: red;
+  
   width: 30%;
 }
 
