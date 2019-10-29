@@ -43,7 +43,7 @@ export default class Flights extends React.Component {
     console.log(this.state)
     const { flights, data } = this.state
     return (
-      <section>
+      <section className='section'>
         <h1>Flights index page</h1>
         {flights && flights.map(flight => (
           <FlightSummary key={flight.tripid} flight={flight} segsets={data.segset} airlines={data.airlines} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }}/>
