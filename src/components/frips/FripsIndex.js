@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 export default class FripsIndex extends React.Component {
   constructor() {
@@ -38,7 +39,7 @@ export default class FripsIndex extends React.Component {
                 {frip.originCity} to {frip.destinationCity}
               </h4>
               <p>
-                {frip.departureDate} - {frip.returnDate}
+                {moment(frip.departureDate).format('Do MMM YY')} - {moment(frip.returnDate).format('Do MMM YY')}
               </p>
               <p>by {frip.creator.username}</p>
             </div>
