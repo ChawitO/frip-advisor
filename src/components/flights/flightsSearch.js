@@ -77,7 +77,7 @@ export default class FlightsSearch extends React.Component {
         <section className="section flight-search-form">
           <div className="container">
             <h2 className="title">Flight Search Page</h2>
-            <form onSubmit={this.onSearchFlights} className="column is-12">
+            <form onSubmit={this.onSearchFlights}>
               <div className='field is-grouped'>
                 <div className='control is-expanded'>
                   <AsyncSelect placeholder='From' cacheOptions defaultOptions loadOptions={searchAirports} onChange={({ value }) => this.setState({ fromAirports: value })}/>
