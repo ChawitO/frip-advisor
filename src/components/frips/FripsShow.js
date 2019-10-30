@@ -81,12 +81,8 @@ export default class FripsShow extends React.Component {
           {/* <div className="show-info-container"> */}
           {frip &&
             frip.hotels.map(hotel => (
-<<<<<<< HEAD
-              <div key={hotel.id} className='show-info'>
-=======
               <div key={hotel.id} className="hotels-show">
->>>>>>> development
-                <img src={hotel.image} alt={`image of ${hotel.name} hotel`} />
+                <img className="show-image" src={hotel.image} alt={`image of ${hotel.name} hotel`} />
                 <h4>
                   <a href={hotel.url} target='_blank' rel='noopener noreferrer'>
                     {hotel.name}

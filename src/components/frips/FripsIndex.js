@@ -25,7 +25,7 @@ export default class FripsIndex extends React.Component {
         <div className="container">
           <h1 className="subtitle is-3 has-text-centered">My Personal Frips</h1>
           
-          <Link to='/frips/new' className="subtitle is-4 has-text-centered">Start creating your new Frip</Link>
+          <Link to='/frips/new' id="trip-link">Start creating your new Frip</Link>
         </div>
         <div className="personal-frip">
           {frips &&
