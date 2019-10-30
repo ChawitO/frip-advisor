@@ -14,13 +14,15 @@ const searchAirports = (...params) => {
     .catch(err => console.log(err))
 }
 
+const currentDate = new Date().toISOString().slice(0, 10)
+
 export default class FlightsSearch extends React.Component {
   constructor() {
     super()
     this.state = {
       fromAirports: null,
       toAirports: null,
-      departureDate: new Date().toISOString().slice(0, 10),
+      departureDate: currentDate,
       returnDate: '',
       flights: null,
       data: null
@@ -89,7 +91,7 @@ export default class FlightsSearch extends React.Component {
                   <AsyncSelect placeholder='To' loadOptions={searchAirports} onChange={({ value }) => this.setState({ toAirports: value })} />
                 </div>
                 <div className='control'>
-                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={this.state.departureDate} min={new Date().toISOString().slice(0, 10)}/>
+                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={this.state.departureDate} min={currentDate}/>
                 </div>
                 <div className='control'>
                   <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' min={departureDate}/>
