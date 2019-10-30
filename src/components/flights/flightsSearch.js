@@ -73,8 +73,8 @@ export default class FlightsSearch extends React.Component {
     console.log(this.state)
     const { flights, data } = this.state
     return (
-      <>
-        <section className="section section_flightssearch">
+      <main className='flight-search'>
+        <section className="section flight-search-form">
           <div className="container">
             <h2 className="title">Flight Search Page</h2>
             <form onSubmit={this.onSearchFlights} className="column is-12">
@@ -82,23 +82,24 @@ export default class FlightsSearch extends React.Component {
                 <div className='control is-expanded'>
                   <AsyncSelect placeholder='From' cacheOptions defaultOptions loadOptions={searchAirports} onChange={({ value }) => this.setState({ fromAirports: value })}/>
                 </div>
+                <div className='control arrow-icon'>
+                  <i className='fas fa-arrows-alt-h'></i>
+                </div>
                 <div className='control is-expanded'>
                   <AsyncSelect placeholder='To' loadOptions={searchAirports} onChange={({ value }) => this.setState({ toAirports: value })} />
                 </div>
-              </div>
-              <div className='field is-grouped'>
-                <div className='control is-expanded'>
+                <div className='control'>
                   <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={this.state.departureDate} />
                 </div>
-                <div className='control is-expanded'>
+                <div className='control'>
                   <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' />
                 </div>
+                <button type='submit' className='button is-info'><i className='fas fa-search'></i></button>
               </div>
-              <button type='submit' className='button is-info'>Submit</button>
             </form>
           </div>
         </section>
-        <section className="section section_flightindex">
+        <section className="section flight-result-display">
           {flights && 
             <div className='container'>
               <h1 className="subtitle">Flight Search Results</h1>
@@ -108,7 +109,7 @@ export default class FlightsSearch extends React.Component {
             </div>
           }
         </section>
-      </>
+      </main>
     )
   }
 }
