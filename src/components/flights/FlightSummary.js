@@ -36,7 +36,7 @@ const FlightSummary = ({ flight, segsets, airportDetails,  airlines, airlineLogo
               <div>{durationText}</div>
             </div>
             <div className='flight-detail-body'>
-              <FlightDetail {...{ flights, airportDetails, legSegments }} />
+              <FlightDetail {...{ flights, airportDetails, legSegments, host, url }} />
             </div>
           </div>
         )
