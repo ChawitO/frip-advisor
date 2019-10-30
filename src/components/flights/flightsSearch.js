@@ -74,12 +74,11 @@ export default class FlightsSearch extends React.Component {
     const { flights, data } = this.state
     return (
       <>
-        <section className="section_flightssearch">
-          <h2 className="title">Flight Search Page</h2>
-          <div className="container columns">
+        <section className="section section_flightssearch">
+          <div className="container">
+            <h2 className="title">Flight Search Page</h2>
             <form onSubmit={this.onSearchFlights} className="column is-12">
               <div className='field is-grouped'>
-                {/* <label className="label">From</label> */}
                 <div className='control is-expanded'>
                   <AsyncSelect placeholder='From' cacheOptions defaultOptions loadOptions={searchAirports} onChange={({ value }) => this.setState({ fromAirports: value })}/>
                 </div>
@@ -99,11 +98,15 @@ export default class FlightsSearch extends React.Component {
             </form>
           </div>
         </section>
-        <section className="section_flightindex">
-          <h1 className="subtitle">Flight Search Results</h1>
-          {flights && flights.map(flight => (
-            <FlightSummary key={flight.tripid} {...data} flight={flight} segsets={data.segset} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }} />
-          ))}
+        <section className="section section_flightindex">
+          {flights && 
+            <div className='container'>
+              <h1 className="subtitle">Flight Search Results</h1>
+              {flights.map(flight => (
+                <FlightSummary key={flight.tripid} {...data} flight={flight} segsets={data.segset} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }} />
+              ))}
+            </div>
+          }
         </section>
       </>
     )
