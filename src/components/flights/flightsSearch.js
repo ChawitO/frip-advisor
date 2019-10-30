@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import AsyncSelect from 'react-select/async'
 
+import FlightSummary from './FlightSummary'
+
 const searchAirports = (...params) => {
   console.log(params)
   return axios.get('/api/locations', { params: { where: params[0] } })
@@ -19,7 +21,9 @@ export default class FlightsSearch extends React.Component {
       fromAirports: null,
       toAirports: null,
       departureDate: new Date().toISOString().slice(0, 10),
-      returnDate: ''
+      returnDate: '',
+      flights: null,
+      data: null
     }
 
     this.onChange = this.onChange.bind(this)
@@ -96,32 +100,9 @@ export default class FlightsSearch extends React.Component {
           </div>
         </section>
         <section className="section_flightindex">
-          <h1 className="subtitle">Flight Index Page</h1>
+          <h1 className="subtitle">Flight Search Results</h1>
           {flights && flights.map(flight => (
-            <div key={flight.tripid} className='content'>
-              <h4><a href={`https://www.kayak.co.uk${flight.shareURL}`}>{flight.cheapestProviderName} - {flight.displayLowTotal}</a></h4>
-              <p>{flight.flightRoutes[0].originAirport} - {flight.flightRoutes[0].destinationAirport}</p>
-              {flight.legs.map((leg, i) => (
-                <div key={leg.id}>
-                  <p>{this.getDurationText(leg.duration)} total</p>
-                  {leg.segments.map((seg, j) => {
-                    const f = data.segset[seg]
-                    const codeShares = flight.codeShares[i]
-                    return (
-                      <div key={seg}>
-                        <p>{data.airlines[f.airlineCode]} {f.flightNumber} | {f.leaveTimeAirport.split(' ')[0]}</p>
-                        <p>{f.originCode} - {f.destinationCode}</p>
-                        <p>{f.leaveTimeAirport.split(' ')[1]} - {f.arriveTimeAirport.split(' ')[1]} | class {f.cabinClass} | {this.getDurationText(f.duration)}</p>
-                        <p>{codeShares.legSegments[j].laydur ? `Change plane in ${f.destinationCode}, layover duration: ${codeShares.legSegments[j].laydur}` : ''}</p>
-                        <br />
-                      </div>
-                    )
-                  })}
-                  <hr />
-                </div>
-              ))}
-              <hr />
-            </div>
+            <FlightSummary key={flight.tripid} {...data} flight={flight} segsets={data.segset} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }} />
           ))}
         </section>
       </>
