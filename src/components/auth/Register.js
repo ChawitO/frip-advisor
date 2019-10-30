@@ -34,59 +34,65 @@ class Register extends React.Component {
 
   render() {
     return (
-    // BULMA form
-      <section className="section">
-        <div className="container">
-          <form onSubmit={this.onSubmit}>
-            <h2 className="title">Register</h2>
-            <div className="field">
-              <label className="label">Username</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="username"
-                  placeholder="Username"
-                  onChange={this.onChange}
-                />
+    // BULMA option
+      <section className="section_register">
+        <div className="register_top_left">
+          <div className="container columns">  
+            <form onSubmit={this.onSubmit} className="column is-12">
+              <h2 className="title">Register</h2>
+              <div className="field">
+                <label className="label">Username</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    name="username"
+                    placeholder="Username"
+                    onChange={this.onChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="email"
-                  placeholder="Email"
-                  onChange={this.onChange}
-                />
+              <div className="field">
+                <label className="label">Email</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    name="email"
+                    placeholder="Email"
+                    onChange={this.onChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                  onChange={this.onChange}
-                />
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    onChange={this.onChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Password Confirmation</label>
-              <div className="control">
-                <input
-                  className="input"
-                  name="passwordConfirmation"
-                  type="password"
-                  placeholder="Password Confirmation"
-                  onChange={this.onChange}
-                />
+              <div className="field">
+                <label className="label">Password Confirmation</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    name="passwordConfirmation"
+                    type="password"
+                    placeholder="Password Confirmation"
+                    onChange={this.onChange}
+                  />
+                </div>
               </div>
-            </div>
-            <button type="submit" className="button is-fullwidth is-primary">Register</button>
-          </form>
+              <button type="submit" className="button is-fullwidth is-primary">Register</button>
+            </form>
+          </div>
+        </div>
+
+        <div className="register_top_right">
+          <img src="./assets/images/owl_3.png" />
         </div>
       </section>
     )
