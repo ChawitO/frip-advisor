@@ -1,5 +1,13 @@
-.flight-summary {
-  margin-bottom: 20px;
+.flight-wrapper {
+  display: flex;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 2px 0 rgba(19, 26, 31, 0.12),0 2px 4px 0 rgba(19,26,31,0.22);
+
+  &:hover {
+    border-color: rgba(19, 26, 31, 0.22);
+  }
 }
 
 .section_flightssearch{
@@ -10,4 +18,61 @@
   background-color: whitesmoke;
   scroll-padding-top: 10%;
   height: 90%vh;
+}
+
+.flight-summary {
+  display: flex;
+
+  &:first-of-type {
+    margin-bottom: 8px;
+  }
+
+  > figure {
+    height: 50px;
+    margin-right: 16px;
+
+    > img {
+      height: 100%;
+    }
+
+    > img.multi {
+      height: 50%;
+    }
+  }
+
+  > div {
+    width: 200px;
+
+    > div:first-of-type {
+      font-weight: 700;
+    }
+
+    > div:last-of-type {
+      font-size: 14px;
+      color: #647582;
+    }
+  }
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 16px;
+  border-left: 1px solid #e5ebf0;
+
+  h4 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  h6 {
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  a {
+    height: 34px;
+    padding: 0 32px;
+  }
 }
