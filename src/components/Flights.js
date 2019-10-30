@@ -46,47 +46,9 @@ export default class Flights extends React.Component {
       <section className='section'>
         <h1>Flights index page</h1>
         {flights && flights.map(flight => (
-          <FlightSummary key={flight.tripid} flight={flight} segsets={data.segset} airlines={data.airlines} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }}/>
-
-          // <div key={flight.tripid} className='content'>
-          //   <h4><a href={`https://www.kayak.co.uk${flight.shareURL}`}>{flight.cheapestProviderName} - {flight.displayLowTotal}</a></h4>
-          //   <p>{flight.flightRoutes[0].originAirport} - {flight.flightRoutes[0].destinationAirport}</p>
-          //   {flight.legs.map((leg, i) => (
-          //     <div key={leg.id}>
-          //       <p>{this.getDurationText(leg.duration)} total</p>
-          //       {leg.segments.map((seg, j) => {
-          //         const f = data.segset[seg]
-          //         const codeShares = flight.codeShares[i]
-          //         return (
-          //           <div key={seg}>
-          //             <p>{data.airlines[f.airlineCode]} {f.flightNumber} | {f.leaveTimeAirport.split(' ')[0]}</p>
-          //             <p>{f.originCode} - {f.destinationCode}</p>
-          //             <p>{f.leaveTimeAirport.split(' ')[1]} - {f.arriveTimeAirport.split(' ')[1]} | class {f.cabinClass} | {this.getDurationText(f.duration)}</p>
-          //             <p>{codeShares.legSegments[j].laydur ? `Change plane in ${f.destinationCode}, layover duration: ${codeShares.legSegments[j].laydur}`  : ''}</p>
-          //             <br />
-          //           </div>
-          //         )
-          //       })}
-          //       <hr />
-          //     </div>
-          //   ))}
-          //   <hr />
-          // </div>
+          <FlightSummary key={flight.tripid} flight={flight} segsets={data.segset} airportDetails={data.airportDetails} airlines={data.airlines} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }}/>
         ))}
       </section>
     )
   }
 }
-
-// flight segments
-/*
-  flight.legs[0].segments.map(seg => {
-    const f = data.segset[seg]
-    return (
-      <div key={seg}>
-        <p>{f.leaveTimeDisplay} - {f.arriveTimeDisplay}</p>
-        <p>{f.originCode} - {f.destinationCode}</p>
-      </div>
-    )
-  })
-*/

@@ -56,7 +56,6 @@ export default class FripsShow extends React.Component {
 
   searchFlights() {
     console.log('ehh')
-    
   }
 
   getBiggerImage(url) {
@@ -69,7 +68,8 @@ export default class FripsShow extends React.Component {
     console.log(this.state)
     const { frip, hotels } = this.state
     return (
-      <section>
+      <section className="section-show
+      ">
         <h1>Frips Show Page</h1>
         <div className='box-showpage'>
           {frip && (
@@ -85,6 +85,7 @@ export default class FripsShow extends React.Component {
               <button onClick={() => this.getHotels()}>Search Hotels</button>
             </div>
           )}
+          {/* <div className="show-info-container"> */}
           {frip &&
             frip.hotels.map(hotel => (
               <div key={hotel.id} className="hotels-show">
@@ -99,21 +100,26 @@ export default class FripsShow extends React.Component {
                 </h6>
               </div>
             ))}
-          {hotels &&
-            hotels.result.map(hotel => (
-              <div key={hotel.hotel_id}>
-                <img
-                  src={hotel.main_photo_url}
-                  alt={`image of ${hotel.hotel_name} hotel`}
-                />
-                <h4>{hotel.hotel_name}</h4>
-                <h6>
-                  {hotel.address_trans}, {hotel.city_trans},{' '}
-                  {hotel.country_trans}
-                </h6>
-                <button onClick={() => this.assignHotel(hotel)}>Assign</button>
-              </div>
-            ))}
+          {/* </div> */}
+          <div className='assign-hotel'>
+            {hotels &&
+              hotels.result.map(hotel => (
+                <div key={hotel.hotel_id}>
+                  <img
+                    src={hotel.main_photo_url}
+                    alt={`image of ${hotel.hotel_name} hotel`}
+                  />
+                  <h4>{hotel.hotel_name}</h4>
+                  <h6>
+                    {hotel.address_trans}, {hotel.city_trans},{' '}
+                    {hotel.country_trans}
+                  </h6>
+                  <button onClick={() => this.assignHotel(hotel)}>
+                    Assign
+                  </button>
+                </div>
+              ))}
+          </div>
         </div>
       </section>
     )

@@ -18,7 +18,7 @@ const FlightSummaryInfo = ({ segsets, segments, duration, i, host, url, airlines
   const daysDiff = mDate1.diff(mDate2, 'days')
 
   return (
-    <div className='flight-summary'>
+    <div className='info-summary'>
       <figure>
         {airlineCodes.map(code => (
           <img key={code} className={imgClass} src={`${host[code]}${url[code]}`} alt={`${code} logo`} />

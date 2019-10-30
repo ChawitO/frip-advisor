@@ -1,6 +1,6 @@
 .flight-wrapper {
   display: flex;
-  padding: 8px 16px;
+  flex-direction: column;
   margin-bottom: 16px;
   border: 1px solid transparent;
   box-shadow: 0 0 2px 0 rgba(19, 26, 31, 0.12),0 2px 4px 0 rgba(19,26,31,0.22);
@@ -21,59 +21,142 @@
   height: 90%vh;
 }
 
-.flight-summary {
+.flight-overview {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+
+  .info-summary {
   display: flex;
 
-  &:first-of-type {
-    margin-bottom: 8px;
+    &:first-of-type {
+      margin-bottom: 8px;
+    }
+
+    > figure {
+      height: 50px;
+      margin-right: 16px;
+
+      > img {
+        height: 100%;
+      }
+
+      > img.multi {
+        height: 50%;
+      }
+    }
+
+    > div {
+      width: 200px;
+
+      > div:first-of-type {
+        font-weight: 700;
+      }
+
+      > div:last-of-type {
+        font-size: 14px;
+        color: #647582;
+      }
+    }
   }
 
-  > figure {
-    height: 50px;
-    margin-right: 16px;
-
-    > img {
-      height: 100%;
-    }
-
-    > img.multi {
-      height: 50%;
-    }
-  }
-
-  > div {
-    width: 200px;
-
-    > div:first-of-type {
-      font-weight: 700;
-    }
-
-    > div:last-of-type {
-      font-size: 14px;
-      color: #647582;
-    }
-  }
-}
-
-.price {
+  .price {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   padding-left: 16px;
   border-left: 1px solid #e5ebf0;
 
-  h4 {
-    font-size: 24px;
-    font-weight: 700;
+    h4 {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    h6 {
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    a {
+      height: 34px;
+      padding: 0 32px;
+    }
+  }
+}
+
+.flight-detail {
+  padding: 8px 16px;
+  background-color: #F3F5F7;
+
+  > div {
+    margin: 20px 0;
   }
 
-  h6 {
-    font-size: 12px;
-    font-weight: 700;
+  .flight-detail-header {
+    display: flex;
+    justify-content: space-between;
+
+    h5 {
+      font-size: 18px;
+      font-weight: 700;
+
+      span {
+        font-size: 15px;
+        font-weight: 400;
+        margin-left: 15px;
+      }
+    }
   }
 
-  a {
-    height: 34px;
-    padding: 0 32px;
+  .flight-detail-body {
+    padding: 20px;
+    border: 1px solid rgba(19, 26, 31, 0.22);
+    background-color: #fff;
   }
+}
+
+.flight-panel {
+  display: flex;
+  font-size: 13px;
+
+  .panel-date {
+    min-width: 120px;
+  }
+
+  .panel-top {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  .panel-main {
+    flex-grow: 1;
+
+    .airplane-detail {
+      font-size: 12px;
+    }
+  }
+
+  .panel-stopover {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin: 20px 0;
+    border-top: 1px dashed #8596a3;
+    border-bottom: 1px dashed #8596a3;
+  }
+
+  span.seat-type {
+    margin-right: 8px;
+    text-transform: capitalize;
+    color: #647582;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+}
+
+.hide {
+  display: none;
 }
