@@ -80,7 +80,7 @@ export default class FripsShow extends React.Component {
           )}
           {frip &&
             frip.hotels.map(hotel => (
-              <div key={hotel.id}>
+              <div key={hotel.id} className="hotels-show">
                 <img src={hotel.image} alt={`image of ${hotel.name} hotel`} />
                 <h4>
                   <a href={hotel.url} target='_blank' rel='noopener noreferrer'>
