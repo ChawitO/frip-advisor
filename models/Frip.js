@@ -18,6 +18,8 @@ const fripSchema = new mongoose.Schema({
   originCityId: { type: String, required: true },
   destinationCity: { type: String, required: true },
   destinationCityId: { type: String, required: true },
+  desCityLoc: { type: Object },
+  weatherForecast: { type: Object },
   departureDate: { type: Date, required: true },
   returnDate: { type: Date, required: true },
   hotels: [hotelSchema],

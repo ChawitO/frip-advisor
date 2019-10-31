@@ -67,29 +67,45 @@ export default class FripsShow extends React.Component {
   render() {
     console.log(this.state)
     const { frip, hotels } = this.state
+    if (frip && frip.weatherForecast) {
+      console.log(frip.weatherForecast)
+    }
     return (
-      <section className="section-show
-      ">
-        <h1>Frips Show Page</h1>
+      <section
+        className='section-show
+      '
+      >
         <div className='box-showpage'>
           {frip && (
-            <div className='content'>
-              <h2>Frip name: {frip.name}</h2>
+            <div className='content-show'>
+              <h2>
+                <strong>Frip name:</strong> {frip.name}
+              </h2>
               <h4>
-                Destination: {frip.originCity} to {frip.destinationCity}
+                <strong> Destination: </strong>
+                {frip.originCity} to {frip.destinationCity}
               </h4>
               <p>
-                {moment(frip.departureDate).format('Do MMM YY')} - {moment(frip.returnDate).format('Do MMM YY')}
+                <strong>Date:</strong>{' '}
+                {moment(frip.departureDate).format('Do MMM YY')} -{' '}
+                {moment(frip.returnDate).format('Do MMM YY')}
               </p>
-              <p>by {frip.creator.username}</p>
-              <button onClick={() => this.getHotels()}>Search Hotels</button>
+              <p>
+                {' '}
+                <strong>Created by</strong> {frip.creator.username}
+              </p>
+              <button className='search-hotel' onClick={() => this.getHotels()}>
+                Search Hotels
+              </button>
             </div>
           )}
-          {/* <div className="show-info-container"> */}
           {frip &&
             frip.hotels.map(hotel => (
-              <div key={hotel.id} className="hotels-show">
-                <img src={this.getBiggerImage(hotel.image)} alt={`image of ${hotel.name} hotel`} />
+              <div key={hotel.id} className='hotels-show'>
+                <img
+                  src={this.getBiggerImage(hotel.image)}
+                  alt={`image of ${hotel.name} hotel`}
+                />
                 <h4>
                   <a href={hotel.url} target='_blank' rel='noopener noreferrer'>
                     {hotel.name}
@@ -100,26 +116,23 @@ export default class FripsShow extends React.Component {
                 </h6>
               </div>
             ))}
-          {/* </div> */}
-          <div className='assign-hotel'>
-            {hotels &&
-              hotels.result.map(hotel => (
-                <div key={hotel.hotel_id}>
-                  <img
-                    src={hotel.main_photo_url}
-                    alt={`image of ${hotel.hotel_name} hotel`}
-                  />
-                  <h4>{hotel.hotel_name}</h4>
-                  <h6>
-                    {hotel.address_trans}, {hotel.city_trans},{' '}
-                    {hotel.country_trans}
-                  </h6>
-                  <button onClick={() => this.assignHotel(hotel)}>
-                    Assign
-                  </button>
-                </div>
-              ))}
-          </div>
+        </div>
+        <div className='assign-hotel'>
+          {hotels &&
+            hotels.result.map(hotel => (
+              <div className='direction' key={hotel.hotel_id}> 
+                <img
+                  src={this.getBiggerImage(hotel.main_photo_url)}
+                  alt={`image of ${hotel.hotel_name} hotel`}
+                />
+                <h4>{hotel.hotel_name}</h4>
+                <h6>
+                  {hotel.address_trans}, {hotel.city_trans},{' '}
+                  {hotel.country_trans}
+                </h6>
+                <button onClick={() => this.assignHotel(hotel)}>Assign</button>
+              </div>
+            ))}
         </div>
       </section>
     )

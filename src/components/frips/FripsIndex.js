@@ -18,6 +18,10 @@ export default class FripsIndex extends React.Component {
       .catch(err => console.log(err))
   }
 
+  // getCityImage() {
+  //   const id = this.props.match.params.id
+  // }
+
   render() {
     console.log(this.state)
     const { frips } = this.state
