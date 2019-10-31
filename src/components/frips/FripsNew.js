@@ -32,9 +32,15 @@ export default class FripsNew extends React.Component {
 
   onSubmit(e) {
     e.preventDefault()
+    console.log('submitting')
     axios.post('/api/frips', this.state.data, { headers: { Authorization: `Bearer ${Auth.getToken()}` } })
+      .then(res => {
+        console.log(res.data)
+        return res
+      })
       .then(res => this.props.history.push(`/frips/${res.data._id}`))
       .catch(err => console.log(err))
+      .finally(() => console.log('finish making frip'))
   }
 
   onSearch() {

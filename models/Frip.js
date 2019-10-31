@@ -36,9 +36,7 @@ const darkskyHeaders = {
   }
 }
 
-fripSchema.pre('save', function check(next) {
-  console.log(this.name)
-  
+fripSchema.pre('save', function checkWeather(next) {
   if (!this.weatherForecast && this.desCityLoc) {
     const url = [
       this.desCityLoc.latitude,
@@ -47,11 +45,9 @@ fripSchema.pre('save', function check(next) {
     ]
 
     Cache.get(`https://dark-sky.p.rapidapi.com/${url.join(',')}`, { params: { exclude: 'currently,minutely,hourly', units: 'si' } }, darkskyHeaders)
-      .then(data => {
-        this.weatherForecast = data.daily.data[0]
-        next()
-      })
+      .then(data => this.weatherForecast = data.daily.data[0])
       .catch(err => console.log(err))
+      .finally(() => next())
   } else {
     next()
   }

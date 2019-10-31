@@ -28,6 +28,7 @@ function create(req, res) {
   req.body.creator = req.currentUser
   Frip
     .create(req.body)
+    .then(frip => res.status(201).json(frip))
     .catch(err => res.status(422).json(err))
 }
 
