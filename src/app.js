@@ -25,6 +25,7 @@ const App = () => (
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         <Route path='/flights' component={Flights} />
+        <Route path='/flightssearch/:origin/:destination' component={FlightsSearch} />
         <Route path='/flightssearch' component={FlightsSearch} />
         <Route path='/frips/new' component={FripsNew} />
         <Route path='/frips/:id' component={FripsShow} />

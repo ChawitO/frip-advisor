@@ -59,7 +59,8 @@ export default class FripsShow extends React.Component {
   }
 
   searchFlights() {
-    console.log('ehh')
+    const { originCity, destinationCity } = this.state.frip
+    this.props.history.push(`/flightssearch/${originCity}/${destinationCity}`)
   }
 
   getBiggerImage(url) {
@@ -107,8 +108,7 @@ export default class FripsShow extends React.Component {
                 >
                   Search Hotels
                 </button>
-                <button className='search-flight'
-                >
+                <button className='search-flight' onClick={() => this.searchFlights()}>
                   Search Flights
                 </button>
               </div>

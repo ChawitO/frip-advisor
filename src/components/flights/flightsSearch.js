@@ -6,7 +6,6 @@ import FlightSummary from './FlightSummary'
 import Spinner from '../common/Spinner'
 
 const searchAirports = (...params) => {
-  console.log(params)
   return axios.get('/api/locations', { params: { where: params[0] } })
     .then(res => res.data
       .filter(loc => loc.loctype === 'ap')
@@ -27,21 +26,32 @@ export default class FlightsSearch extends React.Component {
       returnDate: '',
       flights: null,
       data: null,
-      loading: false
+      loading: false,
+      oAirport: null,
+      dAirport: null
     }
 
     this.onChange = this.onChange.bind(this)
     this.onSearchFlights = this.onSearchFlights.bind(this)
   }
 
-  onChange({ target: { name, value } }) {
-    this.setState({ [name]: value })
+  componentDidMount() {
+    const { origin, destination } = this.props.match.params
+    if (origin && destination) {
+      axios.get('/api/locations', { params: { where: origin } })
+        .then(res => res.data.find(({ loctype }) => loctype === 'ap' ))
+        .then(airport => this.setState({ fromAirports: airport.apicode, oAirport: { value: airport.apicode, label: airport.displayname } }))
+        .catch(err => console.log(err))
+
+      axios.get('/api/locations', { params: { where: destination } })
+        .then(res => res.data.find(({ loctype }) => loctype === 'ap' ))
+        .then(airport => this.setState({ toAirports: airport.apicode, dAirport: { value: airport.apicode, label: airport.displayname } }))
+        .catch(err => console.log(err))
+    }
   }
 
-  onSearch(location) {
-    axios.get('/api/locations', { params: { where: location } })
-      .then(res => this.setState({ fromAirports: res.data.filter(e => e.loctype === 'ap') }))
-      .catch(err => console.log(err))
+  onChange({ target: { name, value } }) {
+    this.setState({ [name]: value })
   }
 
   onSearchFlights(e) {
@@ -76,7 +86,7 @@ export default class FlightsSearch extends React.Component {
 
   render() {
     console.log(this.state)
-    const { flights, data, departureDate, loading } = this.state
+    const { flights, data, departureDate, loading, oAirport, dAirport } = this.state
     return (
       <main className='flight-search'>
         <section className="section flight-search-form">
@@ -85,13 +95,13 @@ export default class FlightsSearch extends React.Component {
             <form onSubmit={this.onSearchFlights}>
               <div className='field is-grouped'>
                 <div className='control is-expanded'>
-                  <AsyncSelect placeholder='From' cacheOptions defaultOptions loadOptions={searchAirports} onChange={({ value }) => this.setState({ fromAirports: value })}/>
+                  <AsyncSelect placeholder='From' value={oAirport} cacheOptions defaultOptions loadOptions={searchAirports} onChange={airport => this.setState({ oAirport: airport, fromAirports: airport.value })}/>
                 </div>
                 <div className='control arrow-icon'>
                   <i className='fas fa-arrows-alt-h'></i>
                 </div>
                 <div className='control is-expanded'>
-                  <AsyncSelect placeholder='To' loadOptions={searchAirports} onChange={({ value }) => this.setState({ toAirports: value })} />
+                  <AsyncSelect placeholder='To' value={dAirport} loadOptions={searchAirports} onChange={(airport) => this.setState({ dAirport: airport, toAirports: airport.value })} />
                 </div>
                 <div className='control'>
                   <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={this.state.departureDate} min={currentDate}/>
