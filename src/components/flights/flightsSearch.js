@@ -17,13 +17,13 @@ const searchAirports = (...params) => {
 const currentDate = new Date().toISOString().slice(0, 10)
 
 export default class FlightsSearch extends React.Component {
-  constructor() {
+  constructor(props) {
     super()
     this.state = {
       fromAirports: null,
       toAirports: null,
-      departureDate: currentDate,
-      returnDate: '',
+      departureDate: props.match.params.departdate || currentDate,
+      returnDate: props.match.params.returndate || '',
       flights: null,
       data: null,
       loading: false,
@@ -37,6 +37,7 @@ export default class FlightsSearch extends React.Component {
 
   componentDidMount() {
     const { origin, destination } = this.props.match.params
+
     if (origin && destination) {
       axios.get('/api/locations', { params: { where: origin } })
         .then(res => res.data.find(({ loctype }) => loctype === 'ap' ))
@@ -86,7 +87,7 @@ export default class FlightsSearch extends React.Component {
 
   render() {
     console.log(this.state)
-    const { flights, data, departureDate, loading, oAirport, dAirport } = this.state
+    const { flights, data, departureDate, returnDate, loading, oAirport, dAirport } = this.state
     return (
       <main className='flight-search'>
         <section className="section flight-search-form">
@@ -104,10 +105,10 @@ export default class FlightsSearch extends React.Component {
                   <AsyncSelect placeholder='To' value={dAirport} loadOptions={searchAirports} onChange={(airport) => this.setState({ dAirport: airport, toAirports: airport.value })} />
                 </div>
                 <div className='control'>
-                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={this.state.departureDate} min={currentDate}/>
+                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={departureDate} min={currentDate}/>
                 </div>
                 <div className='control'>
-                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' min={departureDate}/>
+                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' value={returnDate} min={departureDate}/>
                 </div>
                 <button type='submit' className='button is-info'><i className='fas fa-search'></i></button>
               </div>

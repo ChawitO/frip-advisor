@@ -59,8 +59,8 @@ export default class FripsShow extends React.Component {
   }
 
   searchFlights() {
-    const { originCity, destinationCity } = this.state.frip
-    this.props.history.push(`/flightssearch/${originCity}/${destinationCity}`)
+    const { originCity, destinationCity, departureDate, returnDate } = this.state.frip
+    this.props.history.push(`/flightssearch/${originCity}/${destinationCity}/${departureDate.split('T')[0]}/${returnDate.split('T')[0]}`)
   }
 
   getBiggerImage(url) {
