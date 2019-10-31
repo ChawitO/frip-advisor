@@ -10,9 +10,10 @@ export default class FripsNew extends React.Component {
     this.state = {
       data: {
         name: '',
+        searchOrigin: '',
         originCity: 'London',
         originCityId: '-2601889',
-        searchCities: '',
+        searchDestination: '',
         destinationCity: '',
         destinationCityId: '',
         departureDate: currentDate,
@@ -23,7 +24,6 @@ export default class FripsNew extends React.Component {
 
     this.onChange = this.onChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
-    this.onSearch = this.onSearch.bind(this)
   }
 
   onChange({ target: { name, value } }) {
@@ -32,29 +32,23 @@ export default class FripsNew extends React.Component {
 
   onSubmit(e) {
     e.preventDefault()
-    console.log('submitting')
     axios.post('/api/frips', this.state.data, { headers: { Authorization: `Bearer ${Auth.getToken()}` } })
-      .then(res => {
-        console.log(res.data)
-        return res
-      })
       .then(res => this.props.history.push(`/frips/${res.data._id}`))
       .catch(err => console.log(err))
-      .finally(() => console.log('finish making frip'))
   }
 
-  onSearch() {
-    axios.get('/api/cities', { params: { languagecode: 'en', text: this.state.data.searchCities } })
+  onSearch(key1, key2, desCityLoc) {
+    axios.get('/api/cities', { params: { languagecode: 'en', text: this.state.data[key1] } })
       .then(res => {
         const city = res.data.find(loc => loc.dest_type === 'city')
         const { longitude, latitude } = city
-        this.setState({ data: { ...this.state.data, searchCities: city.label, destinationCity: city.city_name, destinationCityId: city.dest_id, desCityLoc: { longitude, latitude } } })
+        this.setState({ data: { ...this.state.data, [key1]: city.label, [key2]: city.city_name, [`${key2}Id`]: city.dest_id, [desCityLoc]: { longitude, latitude } } })
       })
       .catch(err => console.log(err))
   }
 
   render() {
-    const { name, originCity, searchCities, departureDate, returnDate } = this.state.data
+    const { name, searchOrigin, searchDestination, departureDate, returnDate } = this.state.data
     return (
       <section className='section'>
         <div className='container'>
@@ -73,15 +67,18 @@ export default class FripsNew extends React.Component {
               </div>
             </div>
             <label className='label'>Origin City</label>
-            <div className='field'>
-              <div className='control'>
+            <div className='field has-addons'>
+              <div className='control is-expanded'>
                 <input
                   className='input'
-                  name='originCity'
+                  name='searchOrigin'
                   placeholder='Origin city'
-                  value={originCity}
+                  value={searchOrigin}
                   onChange={this.onChange}
                 />
+              </div>
+              <div className='control'>
+                <button className='button is-primary' type='button' onClick={() => this.onSearch('searchOrigin', 'originCity')}>Search</button>
               </div>
             </div>
             <label className='label'>Destination City</label>
@@ -89,14 +86,14 @@ export default class FripsNew extends React.Component {
               <div className='control is-expanded'>
                 <input
                   className='input'
-                  name='searchCities'
+                  name='searchDestination'
                   placeholder='Destination city'
-                  value={searchCities}
+                  value={searchDestination}
                   onChange={this.onChange}
                 />
               </div>
               <div className='control'>
-                <button className='button is-primary' type='button' onClick={this.onSearch}>Search</button>
+                <button className='button is-primary' type='button' onClick={() => this.onSearch('searchDestination', 'destinationCity', 'desCityLoc')}>Search</button>
               </div>
             </div>
             <label className='label'>Departure Date</label>
