@@ -67,6 +67,9 @@ export default class FripsShow extends React.Component {
   render() {
     console.log(this.state)
     const { frip, hotels } = this.state
+    if (frip && frip.weatherForecast) {
+      console.log(frip.weatherForecast)
+    }
     return (
       <section
         className='section-show
