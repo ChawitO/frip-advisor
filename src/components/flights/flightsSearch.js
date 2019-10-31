@@ -105,12 +105,12 @@ export default class FlightsSearch extends React.Component {
           </div>
         </section>
         <section className="section flight-result-display">
+          <div className="Loader">
+            {loading && <Spinner />}
+          </div>
           {flights && 
             <div className='container'>
               <h1 className="subtitle">Flight Search Results</h1>
-              <div className="Loader">
-                {loading && <Spinner />}
-              </div>
               {flights.map(flight => (
                 <FlightSummary key={flight.tripid} {...data} flight={flight} segsets={data.segset} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }} />
               ))}

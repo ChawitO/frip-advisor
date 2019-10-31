@@ -2,13 +2,15 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import moment from 'moment'
+import Spinner from '../common/Spinner'
 
 export default class FripsShow extends React.Component {
   constructor() {
     super()
     this.state = {
       frip: null,
-      hotels: null
+      hotels: null,
+      loading: false
     }
   }
 
@@ -25,10 +27,11 @@ export default class FripsShow extends React.Component {
   }
 
   getHotels() {
+    this.setState({ loading: true })
     const id = this.props.match.params.id
     axios
       .get(`/api/frips/${id}/hotels`)
-      .then(res => this.setState({ hotels: res.data }))
+      .then(res => this.setState({ hotels: res.data, loading: false }))
       .catch(err => console.log(err))
   }
 
@@ -46,6 +49,7 @@ export default class FripsShow extends React.Component {
     }
 
     const id = this.props.match.params.id
+    this.setState({ loading: true })
     axios
       .post(`/api/frips/${id}/hotels`, data, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -66,15 +70,12 @@ export default class FripsShow extends React.Component {
 
   render() {
     console.log(this.state)
-    const { frip, hotels } = this.state
+    const { frip, hotels, loading } = this.state
     if (frip && frip.weatherForecast) {
       console.log(frip.weatherForecast)
     }
     return (
-      <section
-        className='section-show
-      '
-      >
+      <section className='section-show'>
         <div className='box-showpage'>
           {frip && (
             <div className='content-show'>
@@ -99,6 +100,12 @@ export default class FripsShow extends React.Component {
               </button>
             </div>
           )}
+          {loading &&
+            <div className="Loader">
+              {console.log('spinning')}
+              <Spinner />
+            </div>
+          }
           {frip &&
             frip.hotels.map(hotel => (
               <div key={hotel.id} className='hotels-show'>
