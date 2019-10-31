@@ -18,37 +18,41 @@ export default class FripsIndex extends React.Component {
       .catch(err => console.log(err))
   }
 
-  // getCityImage() {
-  //   const id = this.props.match.params.id
-  // }
+
 
   render() {
+    
     console.log(this.state)
     const { frips } = this.state
     return (
-      <section className="section-index">
-        <div className="container">
-          <h1 className="subtitle is-3 has-text-centered">My Personal Frips</h1>
-          
-          <Link to='/frips/new' id="trip-link">Start creating your new Frip</Link>
+      <section className='section-index'>
+        
+        <h1 className='subtitle is-3 has-text-centered'>My Personal Frips</h1>
+        
+        <div className='trip-link'>
+          <Link to='/frips/new' className='scale'>
+            <p className="fas fa-plane-departure"> Start planning your next Frip</p>
+          </Link>
         </div>
-        <div className="personal-frip">
+        <hr />
+        <div className='personal-frip'>
           {frips &&
-          frips.map(frip => (
-            <div key={frip._id} className='content-index'>
-              <h3>
-                <Link to={`/frips/${frip._id}`}>{frip.name}</Link>
-              </h3>
-              <h4>
-                {frip.originCity} to {frip.destinationCity}
-              </h4>
-              <p>
-                {moment(frip.departureDate).format('Do MMM YY')} - {moment(frip.returnDate).format('Do MMM YY')}
-              </p>
-              <p>by {frip.creator.username}</p>
-            </div>
-            
-          ))}
+            frips.map(frip => (
+              <div key={frip._id} className='content-index'>
+                <h3>
+                  <Link to={`/frips/${frip._id}`}>{frip.name}</Link>
+                </h3>
+                <h4>
+                  {frip.originCity} to {frip.destinationCity}
+                </h4>
+                <p>
+                  {moment(frip.departureDate).format('Do MMM YY')} -{' '}
+                  {moment(frip.returnDate).format('Do MMM YY')}
+                </p>
+                
+                <p>Created by {frip.creator.username}</p>
+              </div>
+            ))}
         </div>
       </section>
     )

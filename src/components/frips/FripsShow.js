@@ -2,13 +2,15 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 import moment from 'moment'
+import Spinner from '../common/Spinner'
 
 export default class FripsShow extends React.Component {
   constructor() {
     super()
     this.state = {
       frip: null,
-      hotels: null
+      hotels: null,
+      loading: false
     }
   }
 
@@ -25,10 +27,11 @@ export default class FripsShow extends React.Component {
   }
 
   getHotels() {
+    this.setState({ loading: true })
     const id = this.props.match.params.id
     axios
       .get(`/api/frips/${id}/hotels`)
-      .then(res => this.setState({ hotels: res.data }))
+      .then(res => this.setState({ hotels: res.data, loading: false }))
       .catch(err => console.log(err))
   }
 
@@ -46,6 +49,7 @@ export default class FripsShow extends React.Component {
     }
 
     const id = this.props.match.params.id
+    this.setState({ loading: true })
     axios
       .post(`/api/frips/${id}/hotels`, data, {
         headers: { Authorization: `Bearer ${Auth.getToken()}` }
@@ -66,39 +70,75 @@ export default class FripsShow extends React.Component {
 
   render() {
     console.log(this.state)
-    const { frip, hotels } = this.state
+    const { frip, hotels, loading } = this.state
     if (frip && frip.weatherForecast) {
       console.log(frip.weatherForecast)
     }
     return (
-      <section
-        className='section-show
-      '
-      >
+      <section className='section-show'>
         <div className='box-showpage'>
           {frip && (
             <div className='content-show'>
-              <h2>
-                <strong>Frip name:</strong> {frip.name}
-              </h2>
-              <h4>
-                <strong> Destination: </strong>
-                {frip.originCity} to {frip.destinationCity}
-              </h4>
-              <p>
-                <strong>Date:</strong>{' '}
-                {moment(frip.departureDate).format('Do MMM YY')} -{' '}
-                {moment(frip.returnDate).format('Do MMM YY')}
-              </p>
-              <p>
-                {' '}
-                <strong>Created by</strong> {frip.creator.username}
-              </p>
-              <button className='search-hotel' onClick={() => this.getHotels()}>
-                Search Hotels
-              </button>
+              <div className='frip-details'>
+                <h1 className='subtitle is 3 has-text-centered'>
+                  {' '}
+                  <strong>Frip details</strong>
+                </h1>
+                <h2>
+                  <strong>Frip name:</strong> {frip.name}
+                </h2>
+                <h4>
+                  <strong> Destination: </strong>
+                  {frip.originCity} to {frip.destinationCity}
+                </h4>
+                <p>
+                  <strong>Date:</strong>{' '}
+                  {moment(frip.departureDate).format('Do MMM YY')} -{' '}
+                  {moment(frip.returnDate).format('Do MMM YY')}
+                </p>
+                <p>
+                  {' '}
+                  <strong>Created by</strong> {frip.creator.username}
+                </p>
+
+                <button
+                  className='search-hotel'
+                  onClick={() => this.getHotels()}
+                >
+                  Search Hotels
+                </button>
+                <button className='search-flight'
+                >
+                  Search Flights
+                </button>
+              </div>
+              <hr />
+              <div className='weather-forecast'>
+                <h1 className='subtitle is 3 has-text-centered'>
+                  <strong> Live Weather Forecast</strong>
+                </h1>
+                <p>
+                  <strong>Overall forecast: </strong>
+                  {frip.weatherForecast.icon}
+                </p>
+                <div>
+                  <p className='fas fa-temperature-low'>
+                    
+                    MIN-MAX {frip.weatherForecast.temperatureLow} -{' '}
+                    {frip.weatherForecast.temperatureHigh} °F
+                  </p>
+                  <p className='fas fa-temperature-high'></p>
+                </div>
+                <p className='fas fa-wind'> {frip.weatherForecast.windSpeed}</p>
+              </div>
             </div>
           )}
+          {loading &&
+            <div className="Loader">
+              {console.log('spinning')}
+              <Spinner />
+            </div>
+          }
           {frip &&
             frip.hotels.map(hotel => (
               <div key={hotel.id} className='hotels-show'>
@@ -117,10 +157,11 @@ export default class FripsShow extends React.Component {
               </div>
             ))}
         </div>
+        <hr className='line-break' />
         <div className='assign-hotel'>
           {hotels &&
             hotels.result.map(hotel => (
-              <div className='direction' key={hotel.hotel_id}> 
+              <div className='direction' key={hotel.hotel_id}>
                 <img
                   src={this.getBiggerImage(hotel.main_photo_url)}
                   alt={`image of ${hotel.hotel_name} hotel`}
