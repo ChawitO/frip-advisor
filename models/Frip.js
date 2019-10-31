@@ -1,4 +1,6 @@
+require('dotenv').config()
 const mongoose = require('mongoose')
+const Cache = require('../lib/cache')
 
 const hotelSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -26,5 +28,33 @@ const fripSchema = new mongoose.Schema({
   creator: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   travellers: { type: [mongoose.Schema.ObjectId], ref: 'User', required: false }
 }, { timestamps: true })
+
+const darkskyHeaders = {
+  headers: {
+    'x-rapidapi-host': 'dark-sky.p.rapidapi.com',
+    'x-rapidapi-key': process.env.RAPID_API_KEY
+  }
+}
+
+fripSchema.pre('save', function check(next) {
+  console.log(this.name)
+  
+  if (!this.weatherForecast && this.desCityLoc) {
+    const url = [
+      this.desCityLoc.latitude,
+      this.desCityLoc.longitude,
+      this.departureDate.toISOString().split('.')[0]
+    ]
+
+    Cache.get(`https://dark-sky.p.rapidapi.com/${url.join(',')}`, { params: { exclude: 'currently,minutely,hourly', units: 'si' } }, darkskyHeaders)
+      .then(data => {
+        this.weatherForecast = data.daily.data[0]
+        next()
+      })
+      .catch(err => console.log(err))
+  } else {
+    next()
+  }
+})
 
 module.exports = mongoose.model('Frip', fripSchema)
