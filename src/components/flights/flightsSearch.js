@@ -3,6 +3,7 @@ import axios from 'axios'
 import AsyncSelect from 'react-select/async'
 
 import FlightSummary from './FlightSummary'
+import Spinner from '../common/Spinner'
 
 const searchAirports = (...params) => {
   console.log(params)
@@ -23,7 +24,8 @@ export default class FlightsSearch extends React.Component {
       departureDate: new Date().toISOString().slice(0, 10),
       returnDate: '',
       flights: null,
-      data: null
+      data: null,
+      loading: false
     }
 
     this.onChange = this.onChange.bind(this)
@@ -56,8 +58,9 @@ export default class FlightsSearch extends React.Component {
       bags: '1'
     }
 
+    this.setState({ loading: true })
     axios.get('/api/flights?', { params })
-      .then(res => this.setState({ data: res.data, flights: res.data.tripset }))
+      .then(res => this.setState({ data: res.data, flights: res.data.tripset, loading: false }))
       .catch(err => console.log(err))
   }
 
@@ -71,7 +74,7 @@ export default class FlightsSearch extends React.Component {
 
   render() {
     console.log(this.state)
-    const { flights, data } = this.state
+    const { flights, data, loading } = this.state
     return (
       <>
         <section className="section_flightssearch">
@@ -95,12 +98,15 @@ export default class FlightsSearch extends React.Component {
                   <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' />
                 </div>
               </div>
-              <button type='submit' className='button is-info'>Submit</button>
+              <button type='submit' className='button is-info'>Submit</button> 
             </form>
           </div>
         </section>
         <section className="section_flightindex">
           <h1 className="subtitle">Flight Search Results</h1>
+          <div className="Loader">
+            {loading && <Spinner />}
+          </div>
           {flights && flights.map(flight => (
             <FlightSummary key={flight.tripid} {...data} flight={flight} segsets={data.segset} airlineLogo={{ url: data.airlineLogos, host: data.airlineLogosHosts }} />
           ))}
