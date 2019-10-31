@@ -1,3 +1,14 @@
+$kayak-grey-text: #647582;
+
+.flight-search {
+  background-color: whitesmoke;
+
+  .arrow-icon {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .flight-wrapper {
   display: flex;
   flex-direction: column;
@@ -10,21 +21,11 @@
   }
 }
 
-.section_flightssearch{
-  background-color: whitesmoke;
-  padding-left: 50px;
-}
-
-.section_flightindex{
-  background-color: whitesmoke;
-  scroll-padding-top: 10%;
-  height: 90%vh;
-}
-
 .flight-overview {
   display: flex;
   justify-content: space-between;
   padding: 8px 16px;
+  background-color: #fff;
 
   .info-summary {
   display: flex;
@@ -55,7 +56,7 @@
 
       > div:last-of-type {
         font-size: 14px;
-        color: #647582;
+        color: $kayak-grey-text;
       }
     }
   }
@@ -95,6 +96,7 @@
   .flight-detail-header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 4px;
 
     h5 {
       font-size: 18px;
@@ -110,7 +112,6 @@
 
   .flight-detail-body {
     padding: 20px;
-    border: 1px solid rgba(19, 26, 31, 0.22);
     background-color: #fff;
   }
 }
@@ -120,7 +121,16 @@
   font-size: 13px;
 
   .panel-date {
+    position: relative;
+    display: flex;
     min-width: 120px;
+
+    img {
+      position: absolute;
+      right: 10px;
+      width: 25px;
+      height: 25px;
+    }
   }
 
   .panel-top {
@@ -149,7 +159,7 @@
   span.seat-type {
     margin-right: 8px;
     text-transform: capitalize;
-    color: #647582;
+    color: $kayak-grey-text;
   }
 
   .bold {

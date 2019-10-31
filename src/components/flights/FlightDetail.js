@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-const FlightDetail = ({ flights, airportDetails, legSegments }) => (
+const FlightDetail = ({ flights, airportDetails, legSegments, host, url }) => (
   flights.map((flight, i) => {
     const mDepartTime = moment(flight.leaveTimeAirport, 'YYYY/MM/DD HH:mm')
     const mArriveTime = moment(flight.arriveTimeAirport, 'YYYY/MM/DD HH:mm')
@@ -13,7 +13,8 @@ const FlightDetail = ({ flights, airportDetails, legSegments }) => (
     return (
       <div className='flight-panel' key={flight.arriveTime}>
         <div className='panel-date'>
-          {mDepartTime.format('ddd, DD MMM')}
+          <div>{mDepartTime.format('ddd, DD MMM')}</div>
+          <img src={`${host[flight.airlineCode]}${url[flight.airlineCode]}`} alt={`${flight.airlineCode} logo`} />
         </div>
         <div className='panel-main'>
           <div className='panel-top'>

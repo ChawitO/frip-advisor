@@ -8,7 +8,7 @@ const toggleHide = (id) => {
 }
 
 const FlightSummary = ({ flight, segsets, airportDetails,  airlines, airlineLogo: { host, url } }) => (
-  <div className='container flight-wrapper'>
+  <div className='flight-wrapper'>
     <div className='flight-overview' onClick={() => toggleHide(flight.tripid)}>
       <div className='info'>
         {flight.legs.map(({ id, duration, segments }, i) => (
@@ -36,7 +36,7 @@ const FlightSummary = ({ flight, segsets, airportDetails,  airlines, airlineLogo
               <div>{durationText}</div>
             </div>
             <div className='flight-detail-body'>
-              <FlightDetail {...{ flights, airportDetails, legSegments }} />
+              <FlightDetail {...{ flights, airportDetails, legSegments, host, url }} />
             </div>
           </div>
         )
