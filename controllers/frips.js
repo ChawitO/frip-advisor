@@ -8,6 +8,13 @@ const bookingHeaders = {
   }
 }
 
+const darkskyHeaders = {
+  headers: {
+    'x-rapidapi-host': 'dark-sky.p.rapidapi.com',
+    'x-rapidapi-key': process.env.RAPID_API_KEY
+  }
+}
+
 function index(req, res) {
   Frip
     .find()
@@ -28,7 +35,18 @@ function create(req, res) {
   req.body.creator = req.currentUser
   Frip
     .create(req.body)
-    .then(frips => res.status(201).json(frips))
+    .then(frip => {
+      const url = [
+        frip.desCityLoc.latitude,
+        frip.desCityLoc.longitude,
+        frip.departureDate.toISOString().split('.')[0]
+      ]
+      return Cache.get(`https://dark-sky.p.rapidapi.com/${url.join(',')}`,{ params: { exclude: 'currently,minutely,hourly', units: 'si' } }, darkskyHeaders)
+        .then(data => frip.set({ weatherForecast: data.daily.data[0] }))
+        .catch(err => console.log(err))
+    })
+    .then(frip => frip.save())
+    .then(frip => res.status(201).json(frip))
     .catch(err => res.status(422).json(err))
 }
 

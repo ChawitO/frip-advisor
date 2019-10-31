@@ -13,6 +13,7 @@ export default class FripsNew extends React.Component {
         searchCities: '',
         destinationCity: '',
         destinationCityId: '',
+        desCityLoc: null,
         departureDate: new Date().toISOString().slice(0, 10),
         returnDate: ''
       }
@@ -38,7 +39,8 @@ export default class FripsNew extends React.Component {
     axios.get('/api/cities', { params: { languagecode: 'en', text: this.state.data.searchCities } })
       .then(res => {
         const city = res.data.find(loc => loc.dest_type === 'city')
-        this.setState({ data: { ...this.state.data, searchCities: city.label, destinationCity: city.city_name, destinationCityId: city.dest_id } })
+        const { longitude, latitude } = city
+        this.setState({ data: { ...this.state.data, searchCities: city.label, destinationCity: city.city_name, destinationCityId: city.dest_id, desCityLoc: { longitude, latitude } } })
       })
       .catch(err => console.log(err))
   }
