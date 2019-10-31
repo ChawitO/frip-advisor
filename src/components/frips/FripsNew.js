@@ -2,6 +2,8 @@ import React from 'react'
 import axios from 'axios'
 import Auth from '../../lib/auth'
 
+const currentDate = new Date().toISOString().slice(0, 10)
+
 export default class FripsNew extends React.Component {
   constructor() {
     super()
@@ -13,7 +15,8 @@ export default class FripsNew extends React.Component {
         searchCities: '',
         destinationCity: '',
         destinationCityId: '',
-        departureDate: new Date().toISOString().slice(0, 10),
+        departureDate: currentDate,
+        desCityLoc: null,
         returnDate: ''
       }
     }
@@ -38,7 +41,8 @@ export default class FripsNew extends React.Component {
     axios.get('/api/cities', { params: { languagecode: 'en', text: this.state.data.searchCities } })
       .then(res => {
         const city = res.data.find(loc => loc.dest_type === 'city')
-        this.setState({ data: { ...this.state.data, searchCities: city.label, destinationCity: city.city_name, destinationCityId: city.dest_id } })
+        const { longitude, latitude } = city
+        this.setState({ data: { ...this.state.data, searchCities: city.label, destinationCity: city.city_name, destinationCityId: city.dest_id, desCityLoc: { longitude, latitude } } })
       })
       .catch(err => console.log(err))
   }
@@ -99,6 +103,7 @@ export default class FripsNew extends React.Component {
                   placeholder='Departure date'
                   value={departureDate}
                   onChange={this.onChange}
+                  min={currentDate}
                 />
               </div>
               <div className='control is-expanded has-text-centered'>To</div>
@@ -110,6 +115,7 @@ export default class FripsNew extends React.Component {
                   placeholder='Return date'
                   value={returnDate}
                   onChange={this.onChange}
+                  min={departureDate}
                 />
               </div>
             </div>

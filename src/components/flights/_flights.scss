@@ -1,5 +1,14 @@
 $kayak-grey-text: #647582;
 
+.flight-search {
+  background-color: whitesmoke;
+
+  .arrow-icon {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .flight-wrapper {
   display: flex;
   flex-direction: column;
@@ -10,17 +19,6 @@ $kayak-grey-text: #647582;
   &:hover {
     border-color: rgba(19, 26, 31, 0.22);
   }
-}
-
-.section_flightssearch{
-  background-color: whitesmoke;
-  padding-left: 50px;
-}
-
-.section_flightindex{
-  background-color: whitesmoke;
-  scroll-padding-top: 10%;
-  height: 90%vh;
 }
 
 .flight-overview {
