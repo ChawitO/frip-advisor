@@ -72,7 +72,8 @@ export default class FripsShow extends React.Component {
         className='section-show
       '
       >
-        <div className='box-showpage'>
+        <div className='box-showpage'> 
+          {/* <h1>Your choices</h1> */}
           {frip && (
             <div className='content-show'>
               <h2>
@@ -114,7 +115,9 @@ export default class FripsShow extends React.Component {
               </div>
             ))}
         </div>
+        <hr className="line-break" />
         <div className='assign-hotel'>
+          
           {hotels &&
             hotels.result.map(hotel => (
               <div className='direction' key={hotel.hotel_id}> 
