@@ -170,3 +170,14 @@ $kayak-grey-text: #647582;
 .hide {
   display: none;
 }
+
+div.Loader {
+  width: 100%;
+  display: flex;
+ justify-content: center;
+}
+
+.spinner {
+  font-size: 150px;
+  color: turquoise;
+}

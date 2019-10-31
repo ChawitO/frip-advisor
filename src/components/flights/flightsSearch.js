@@ -3,6 +3,7 @@ import axios from 'axios'
 import AsyncSelect from 'react-select/async'
 
 import FlightSummary from './FlightSummary'
+import Spinner from '../common/Spinner'
 
 const searchAirports = (...params) => {
   console.log(params)
@@ -25,7 +26,8 @@ export default class FlightsSearch extends React.Component {
       departureDate: currentDate,
       returnDate: '',
       flights: null,
-      data: null
+      data: null,
+      loading: false
     }
 
     this.onChange = this.onChange.bind(this)
@@ -58,8 +60,9 @@ export default class FlightsSearch extends React.Component {
       bags: '1'
     }
 
+    this.setState({ loading: true })
     axios.get('/api/flights?', { params })
-      .then(res => this.setState({ data: res.data, flights: res.data.tripset }))
+      .then(res => this.setState({ data: res.data, flights: res.data.tripset, loading: false }))
       .catch(err => console.log(err))
   }
 
@@ -73,7 +76,7 @@ export default class FlightsSearch extends React.Component {
 
   render() {
     console.log(this.state)
-    const { flights, data, departureDate } = this.state
+    const { flights, data, departureDate, loading } = this.state
     return (
       <main className='flight-search'>
         <section className="section flight-search-form">
@@ -102,6 +105,9 @@ export default class FlightsSearch extends React.Component {
           </div>
         </section>
         <section className="section flight-result-display">
+          <div className="Loader">
+            {loading && <Spinner />}
+          </div>
           {flights && 
             <div className='container'>
               <h1 className="subtitle">Flight Search Results</h1>
