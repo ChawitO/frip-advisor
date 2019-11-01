@@ -3,7 +3,6 @@ import React from 'react'
 
 const RestaurantList = ({ name, url, location, thumb, establishment, cuisines, average_cost_for_two, currency, timings, user_rating }) => (
   <a href={url} target='_blank' rel='noopener noreferrer'>
-    {console.log(url)}
     <li className='restaurant'>
       <img src={thumb} />
       <div>

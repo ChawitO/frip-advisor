@@ -6,11 +6,7 @@ export default class Home extends React.Component {
   constructor() {
     super()
     this.state = {
-      searchCities: '',
-      cities: null,
-      hotels: null,
-      selectedCity: '61',
-      selectedCuisines: [],
+      searchCity: '',
       restaurantSuggestions: null
     }
 
@@ -28,14 +24,15 @@ export default class Home extends React.Component {
 
   getRestaurants(e) {
     if (e) e.preventDefault()
+
     const params = {
-      entity_id: this.state.selectedCity,
       entity_type: 'city',
-      q: this.state.searchTerm,
-      cuisines: this.state.selectedCuisines.join(',')
+      q: this.state.searchTerm
     }
 
-    axios.get('/api/restaurants', { params })
+    axios
+      .get('/api/zomatocities', { params: { q: this.state.searchCity || 'london' } })
+      .then(({ data }) => axios.get('/api/restaurants', { params: { ...params, entity_id: data.location_suggestions[0].id } }))
       .then(res => this.setState({ restaurantSuggestions: res.data.restaurants }))
       .catch(err => console.log(err))
   }
@@ -48,10 +45,19 @@ export default class Home extends React.Component {
         <section className="section_home">
           <img src="./assets/images/Skyline.jpg"/>
         </section>
-        <section>
-          <form onSubmit={this.getRestaurants}>
-            <input name='searchTerm' placeholder='search restaurants...' />
-            <button type='submit'>Search</button>
+        <section className='section'>
+          <form className='container' onSubmit={this.getRestaurants}>
+            <div className='field has-addons'>
+              <div className='control is-expanded'>
+                <input className='input' name='searchCity' placeholder='search city...' onChange={this.onChange}/>
+              </div>
+              <div className='control is-expanded'>
+                <input className='input' name='searchTerm' placeholder='search restaurants...' onChange={this.onChange}/>
+              </div>
+              <div className='control'>
+                <button className='button is-primary' type='submit'>Search</button>
+              </div>
+            </div>
           </form>
         </section>
         {restaurantSuggestions &&

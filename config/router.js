@@ -47,4 +47,7 @@ router.route('/cities/:id/hotels')
 router.route('/restaurants')
   .get(zomato.searchRestaurants)
 
+router.route('/zomatocities')
+  .get(zomato.searchCities)
+
 module.exports = router
