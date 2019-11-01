@@ -99,7 +99,7 @@ padding-top: 20%;
 }
 
 .section-index {
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .content-index {
@@ -203,7 +203,6 @@ flex-wrap: wrap;
 }
 
 #root > main > section.section {
-  height: 55vh;
   text-align: center;
 }
 
