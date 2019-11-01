@@ -5,9 +5,9 @@
   box-sizing: border-box;
 }
 
-.section_home {
-  height: 90vh;
-}
+// .section_home {
+//   height: 90vh;
+// }
 
 .section_home > img {
 	height: 30vh;
@@ -199,6 +199,11 @@ flex-wrap: wrap;
 #root > footer {
   background-color: hsl(171, 100%, 41%);
   padding: 15px;
+}
+
+#root > main > section.section {
+  height: 55vh;
+  text-align: center;
 }
 
 

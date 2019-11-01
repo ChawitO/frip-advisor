@@ -46,7 +46,8 @@ export default class Home extends React.Component {
           <img src="./assets/images/Skyline.jpg"/>
         </section>
         <section className='section'>
-          <form className='container' onSubmit={this.getRestaurants}>
+          <h2 className="title">What would you like to do?</h2>
+          <form className='container column is-8' onSubmit={this.getRestaurants}>
             <div className='field has-addons'>
               <div className='control is-expanded'>
                 <input className='input' name='searchCity' placeholder='search city...' onChange={this.onChange}/>
@@ -61,8 +62,8 @@ export default class Home extends React.Component {
           </form>
         </section>
         {restaurantSuggestions &&
-          <section className='section'>
-            <ul className='container'>
+          <section className="section">
+            <ul className="container">
               {restaurantSuggestions.map(({ restaurant }) => (
                 <RestaurantList key={restaurant.id} {...restaurant} />
               ))}
