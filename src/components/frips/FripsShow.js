@@ -59,8 +59,17 @@ export default class FripsShow extends React.Component {
   }
 
   searchFlights() {
-    const { originCity, destinationCity, departureDate, returnDate } = this.state.frip
-    this.props.history.push(`/flightssearch/${originCity}/${destinationCity}/${departureDate.split('T')[0]}/${returnDate.split('T')[0]}`)
+    const {
+      originCity,
+      destinationCity,
+      departureDate,
+      returnDate
+    } = this.state.frip
+    this.props.history.push(
+      `/flightssearch/${originCity}/${destinationCity}/${
+        departureDate.split('T')[0]
+      }/${returnDate.split('T')[0]}`
+    )
   }
 
   getBiggerImage(url) {
@@ -102,16 +111,20 @@ export default class FripsShow extends React.Component {
                   {' '}
                   <strong>Created by</strong> {frip.creator.username}
                 </p>
-
-                <button
-                  className='search-hotel'
-                  onClick={() => this.getHotels()}
-                >
-                  Search Hotels
-                </button>
-                <button className='search-flight' onClick={() => this.searchFlights()}>
-                  Search Flights
-                </button>
+                <div className="search-buttons">
+                  <button
+                    className='search-hotel'
+                    onClick={() => this.getHotels()}
+                  >
+                    Search Hotels
+                  </button>
+                  <button
+                    className='search-flight'
+                    onClick={() => this.searchFlights()}
+                  >
+                    Search Flights
+                  </button>
+                </div>
               </div>
               <hr />
               <div className='weather-forecast'>
@@ -124,7 +137,6 @@ export default class FripsShow extends React.Component {
                 </p>
                 <div>
                   <p className='fas fa-temperature-low'>
-                    
                     MIN-MAX {frip.weatherForecast.temperatureLow} -{' '}
                     {frip.weatherForecast.temperatureHigh} °F
                   </p>
