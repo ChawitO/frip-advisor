@@ -72,7 +72,7 @@ export default class FlightsSearch extends React.Component {
     }
 
     this.setState({ loading: true })
-    axios.get('/api/flights?', { params })
+    axios.get('/api/flights', { params })
       .then(res => this.setState({ data: res.data, flights: res.data.tripset, loading: false }))
       .catch(err => console.log(err))
   }

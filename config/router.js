@@ -5,6 +5,7 @@ const trips = require('../controllers/trips')
 const frips = require('../controllers/frips')
 const kajaks = require('../controllers/kajak')
 const bookings = require('../controllers/booking')
+const zomato = require('../controllers/zomato')
 const secureRoute = require('../lib/secureRoute')
 
 router.route('/trips')
@@ -42,5 +43,8 @@ router.route('/cities')
 
 router.route('/cities/:id/hotels')
   .get(bookings.hotelIndex)
+
+router.route('/restaurants')
+  .get(zomato.searchRestaurants)
 
 module.exports = router

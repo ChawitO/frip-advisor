@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import RestaurantList from '../restaurants/RestaurantList'
 
 export default class Home extends React.Component {
   constructor() {
@@ -7,37 +8,62 @@ export default class Home extends React.Component {
     this.state = {
       searchCities: '',
       cities: null,
-      hotels: null
+      hotels: null,
+      selectedCity: '61',
+      selectedCuisines: [],
+      restaurantSuggestions: null
     }
 
     this.onChange = this.onChange.bind(this)
+    this.getRestaurants = this.getRestaurants.bind(this)
+  }
+
+  componentDidMount() {
+    this.getRestaurants()
   }
 
   onChange({ target: { name, value } }) {
     this.setState({ [name]: value })
   }
 
-  onSearch(name, path, e) {
+  getRestaurants(e) {
     if (e) e.preventDefault()
     const params = {
-      searchCities: { languagecode: 'en', text: this.state.searchCities },
-      searchHotels: { price_filter_currencycode: 'GBP', travel_purpose: 'leisure', search_id: 'none', order_by: 'popularity', languagecode: 'en', search_type: 'city', offset: 0, guest_qty: 1, arrival_date: '2020-03-13', departure_date: '2020-03-15', room_qty: 1 }
+      entity_id: this.state.selectedCity,
+      entity_type: 'city',
+      q: this.state.searchTerm,
+      cuisines: this.state.selectedCuisines.join(',')
     }
-    console.log('onSearch func')
-    const key = name.replace('search', '').toLowerCase()
-    axios.get(`/api${path}`, { params: params[name] })
-      .then(res => this.setState({ hotels: null, [key]: res.data }))
+
+    axios.get('/api/restaurants', { params })
+      .then(res => this.setState({ restaurantSuggestions: res.data.restaurants }))
       .catch(err => console.log(err))
   }
 
   render() {
     console.log(this.state)
-    
+    const { restaurantSuggestions } = this.state
     return (
-      <section className="section_home">
-        <h1>Frip Advisor Home Page</h1>
-        <img src="./assets/images/Skyline.jpg"/>
-      </section>
+      <main>
+        <section className="section_home">
+          <img src="./assets/images/Skyline.jpg"/>
+        </section>
+        <section>
+          <form onSubmit={this.getRestaurants}>
+            <input name='searchTerm' placeholder='search restaurants...' />
+            <button type='submit'>Search</button>
+          </form>
+        </section>
+        {restaurantSuggestions &&
+          <section className='section'>
+            <ul className='container'>
+              {restaurantSuggestions.map(({ restaurant }) => (
+                <RestaurantList key={restaurant.id} {...restaurant} />
+              ))}
+            </ul>
+          </section>
+        }
+      </main>
     )
   }
 }
