@@ -22,7 +22,7 @@ export default class FripsShow extends React.Component {
     const id = this.props.match.params.id
     axios
       .get(`/api/frips/${id}`)
-      .then(res => this.setState({ frip: res.data, hotels: null }))
+      .then(res => this.setState({ frip: res.data, hotels: null, loading: false }))
       .catch(err => console.log(err))
   }
 
@@ -72,6 +72,7 @@ export default class FripsShow extends React.Component {
   render() {
     console.log(this.state)
     const { frip, hotels, loading } = this.state
+    console.log(loading)
     if (frip && frip.weatherForecast) {
       console.log(frip.weatherForecast)
     }
@@ -135,7 +136,6 @@ export default class FripsShow extends React.Component {
           )}
           {loading &&
             <div className="Loader">
-              {console.log('spinning')}
               <Spinner />
             </div>
           }
