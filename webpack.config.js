@@ -49,6 +49,6 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './src/assets', to: 'assets' }
     ]),
-    new webpack.EnvironmentPlugin(['RAPID_API_KEY'])
+    new webpack.EnvironmentPlugin(['RAPID_API_KEY', 'ZOMATO_TOKEN'])
   ]
 }

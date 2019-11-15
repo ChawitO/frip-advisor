@@ -40,12 +40,12 @@ export default class FlightsSearch extends React.Component {
 
     if (origin && destination) {
       axios.get('/api/locations', { params: { where: origin } })
-        .then(res => res.data.find(({ loctype }) => loctype === 'ap' ))
+        .then(res => res.data.find(({ loctype }) => loctype === 'ap'))
         .then(airport => this.setState({ fromAirports: airport.apicode, oAirport: { value: airport.apicode, label: airport.displayname } }))
         .catch(err => console.log(err))
 
       axios.get('/api/locations', { params: { where: destination } })
-        .then(res => res.data.find(({ loctype }) => loctype === 'ap' ))
+        .then(res => res.data.find(({ loctype }) => loctype === 'ap'))
         .then(airport => this.setState({ toAirports: airport.apicode, dAirport: { value: airport.apicode, label: airport.displayname } }))
         .catch(err => console.log(err))
     }
@@ -96,7 +96,7 @@ export default class FlightsSearch extends React.Component {
             <form onSubmit={this.onSearchFlights}>
               <div className='field is-grouped'>
                 <div className='control is-expanded'>
-                  <AsyncSelect placeholder='From' value={oAirport} cacheOptions defaultOptions loadOptions={searchAirports} onChange={airport => this.setState({ oAirport: airport, fromAirports: airport.value })}/>
+                  <AsyncSelect placeholder='From' value={oAirport} cacheOptions defaultOptions loadOptions={searchAirports} onChange={airport => this.setState({ oAirport: airport, fromAirports: airport.value })} />
                 </div>
                 <div className='control arrow-icon'>
                   <i className='fas fa-arrows-alt-h'></i>
@@ -105,10 +105,10 @@ export default class FlightsSearch extends React.Component {
                   <AsyncSelect placeholder='To' value={dAirport} loadOptions={searchAirports} onChange={(airport) => this.setState({ dAirport: airport, toAirports: airport.value })} />
                 </div>
                 <div className='control'>
-                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={departureDate} min={currentDate}/>
+                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='departureDate' value={departureDate} min={currentDate} />
                 </div>
                 <div className='control'>
-                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' value={returnDate} min={departureDate}/>
+                  <input type='date' className='input' onChange={(e) => this.onChange(e)} name='returnDate' value={returnDate} min={departureDate} />
                 </div>
                 <button type='submit' className='button is-info'><i className='fas fa-search'></i></button>
               </div>
@@ -119,7 +119,7 @@ export default class FlightsSearch extends React.Component {
           <div className="Loader">
             {loading && <Spinner />}
           </div>
-          {flights && 
+          {flights &&
             <div className='container'>
               <h1 className="subtitle">Flight Search Results</h1>
               {flights.map(flight => (

@@ -21,7 +21,8 @@ app.use('/api', logger)
 
 app.use('/api', router)
 
-app.get('/*', (req, res) => res.status(404).json({ message: 'page not found' }))
+app.get('/*', (req, res) => res.sendFile(`${__dirname}/dist/index.html`))
+// app.get('/*', (req, res) => res.status(404).json({ message: 'page not found' }))
 
 app.listen(port, () => console.log(`Running on port ${port}`))
 
