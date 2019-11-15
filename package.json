@@ -7,10 +7,12 @@
   "author": "Chawit.O <chawit.ocr@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "mocha test/**/*_spec.js --require test/helper --recursive --exit",
-    "serve:back": "nodemon index.js",
+    "serve:back": "nodemon",
     "serve:front": "webpack-dev-server --mode-development",
-    "seed": "node db/seeds.js"
+    "seed": "node db/seeds.js",
+    "build": "webpack -p",
+    "start": "node index.js",
+    "test": "mocha test/**/*_spec.js --require test/helper --recursive --exit"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

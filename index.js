@@ -13,6 +13,8 @@ mongoose.connect(dbURI,
   () => console.log(`Express connected to port ${port}`)
 )
 
+app.use(express.static(`${__dirname}/dist`))
+
 app.use(bodyParser.json())
 
 app.use('/api', logger)
@@ -24,4 +26,3 @@ app.get('/*', (req, res) => res.status(404).json({ message: 'page not found' }))
 app.listen(port, () => console.log(`Running on port ${port}`))
 
 module.exports = app
-
