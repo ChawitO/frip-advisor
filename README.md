@@ -64,12 +64,10 @@ For the frontend code, I handled all the API calls to our backends, along with t
 For the flight search page, along with the flights listing, I handled the backend, frontend, along with the SCSS styling.
 
 # Challenges
-This project was the toughest one out of all 4 I have done at General Assembly. Not because of complexity of the project itself, but because of one of teammates. The person did not put effort into this project, doing minimal work throughout the week and did not contribute to the brainstorming, and in general was unconcerned with the outcome of this project. This left my other teammate and me to handle most of the workload.
-
-However, to prevent the total breakdown of the group, we managed to assign some easy tasks to him, and move on to tackle more complicated tasks ourselves.
+This project was the toughest one out of all 4 I have done at General Assembly. Not because of complexity of the project itself, but because of one of the teammates. The person chose not to put much effort into this project, and in general was unconcerned with the outcome of this project. This left my other teammate and me to handle most of the workload, and because I was more confident in the more challenging areas of the project, we decided that I would work on them. Because we did not want a totally breakdown of the group, we assigned some easy tasks to the other member.
 
 # Wins
-* I learn to come to terms with the fact that I cannot choose my teammates all the time.
+* I learn to come to terms with the fact that I cannot choose my teammates all the time, which is what real life works are usually. Compromise is key.
 * Learn to focus on the major important features and leave out the minor ones for later.
 * Project planning, make sure everything important was finished in time for the deadline
 
